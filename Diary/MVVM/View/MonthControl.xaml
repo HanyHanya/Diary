@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Diary.MVVM.View.MonthControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Diary.MVVM.View"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Foreground="#FFE91E6F" Background="White"
+             d:DesignHeight="550" d:DesignWidth="688">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="365*"/>
+            <RowDefinition Height="186*"/>
+        </Grid.RowDefinitions>
+        <CalendarItem Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <CalendarItem Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Margin="0,4.2,0,3.4" Width="176" />
+        <CalendarItem Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Margin="0,4.2,0,3.4" Width="176" />
+        <TextBlock Text="{DynamicResource List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Margin="122,5,122,0" />
+        <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Width="150" Height="35"
+                Content="{DynamicResource Add}" Margin="97,125.2,97,25.4" Command="{Binding AddTaskCommand}"/>
+        <ScrollViewer BorderThickness="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,38,10,85.4" Height="427" Width="324">
+            <ListBox x:Name="TaskControl" BorderThickness="0" Background="GhostWhite">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Background="AntiqueWhite" Orientation="Horizontal">
+                            <Grid MaxHeight="60" Grid.Row="1">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80*"/>
+                                    <ColumnDefinition Width="20*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox x:Name="ContactName" Grid.Column="0"/>
+                                <RadioButton Grid.Column="1"/>
+                            </Grid>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

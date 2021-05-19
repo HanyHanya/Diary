@@ -1,0 +1,71 @@
+﻿<Window x:Class="Diary.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diary"
+        xmlns:viewModel="clr-namespace:Diary"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Diary" Height="600" Width="850"  Foreground="#FFE91E6F">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="47*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="39.2"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Column="0" Grid.Row="10" Grid.RowSpan="2"
+                Background="#f8bbd0"/>
+        
+        <Button Command="{Binding MonthViewCommand}"
+            Style="{StaticResource MaterialDesignFlatButton}"
+            ToolTip="MaterialDesignFlatButton"
+            x:Name="MonthMainButton" Content="{DynamicResource Month}" Grid.Column="0" Grid.Row="4" Margin="0,3.2,10,4" Height="Auto"/>
+        <Button  Style="{StaticResource MaterialDesignFlatButton}"
+            ToolTip="MaterialDesignFlatButton" x:Name="SettingsMainButton"
+                 Grid.Column="0" Grid.Row="10"
+                 Margin="0,4,10,3.2"
+                 Height="Auto" HorizontalAlignment="Right" Width="48"
+                 Command="{Binding SettingsCommand}">
+            <materialDesign:PackIcon Kind="Settings"/>
+        </Button>
+        <Button Grid.Row="12" HorizontalAlignment="Center" Content="{DynamicResource LogIn}" Command="{Binding RegistrationCommand}" />
+        <Button Command="{Binding YearViewCommand}"
+            Style="{StaticResource MaterialDesignFlatButton}"
+            ToolTip="MaterialDesignFlatButton"
+            x:Name="YearMainButton" Content="{DynamicResource Year}" Grid.Column="0" Grid.Row="5" Margin="0,4,10,3.2" Height="Auto"/>
+        <TextBlock Text="{DynamicResource Add}" HorizontalAlignment="Left" 
+                   Grid.Column="0" Grid.Row="6" FontSize="16"
+                   Margin="20,6.8,0,5.4" TextDecorations="{x:Null}" Width="70"/>
+        <materialDesign:PopupBox PlacementMode="BottomAndAlignCentres" 
+                                 ToggleCheckedContentCommand="{Binding FloatingActionDemoCommand}"
+                                 ToggleCheckedContentCommandParameter="wowsers"
+                                 ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox"
+                                 HorizontalAlignment="Right" 
+                                 Margin="0,4.8,19,5.4"
+                                 Grid.Column="0" Grid.Row="6" FontWeight="Bold" Width="33" RenderTransformOrigin="0.43,0.521">
+            <StackPanel>
+                <Button ToolTip="One" Content="{DynamicResource Task}" Foreground="#FFE91E6F" Command="{Binding AddTaskCommand}" />
+                <Button ToolTip="Two" Content="{DynamicResource Event}" Foreground="#FFE91E6F" Command="{Binding AddEventCommand}"/>
+                <Button ToolTip="Three" Content="{DynamicResource Contact}" Foreground="#FFE91E6F" Command="{Binding AddContactCommand}"/>
+            </StackPanel>
+        </materialDesign:PopupBox>
+
+        <ContentControl x:Name="MainContentControl" Content="{Binding CurrentView}"
+               Grid.Row="0" Grid.Column="1" Grid.RowSpan="12"/>
+
+    </Grid>
+</Window>

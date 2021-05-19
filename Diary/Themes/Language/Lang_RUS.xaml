@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Diary.Themes.Language"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+
+
+    <v:String x:Key="Month">Месяц</v:String>
+    <v:String x:Key="Year">Год</v:String>
+    <v:String x:Key="Add">Добавить</v:String>
+    <v:String x:Key="Task">Задача</v:String>
+    <v:String x:Key="Contact">Контакт</v:String>
+    <v:String x:Key="Event">Событие</v:String>
+    <v:String x:Key="LogIn">Войти</v:String>
+    <v:String x:Key="List">Список дел</v:String>
+    <v:String x:Key="Name">Имя</v:String>
+    <v:String x:Key="Password">Пароль</v:String>
+    <v:String x:Key="Login">Логин</v:String>
+    <v:String x:Key="CheckIn">Регистрация</v:String>
+    <v:String x:Key="Save">Сохранить</v:String>
+    <v:String x:Key="Title">Название</v:String>
+    <v:String x:Key="Term">Срок</v:String>
+    <v:String x:Key="Date">Дата</v:String>
+    <v:String x:Key="Time">Время</v:String>
+    <v:String x:Key="Note">Примечания</v:String>
+    <v:String x:Key="AllDay">Весь день</v:String>
+    <v:String x:Key="Start">Начало</v:String>
+    <v:String x:Key="End">Конец</v:String>
+    <v:String x:Key="Remind">Напомнить</v:String>
+    <v:String x:Key="DoNotRemind">Не напомнинать</v:String>
+    <v:String x:Key="Hour">За час</v:String>
+    <v:String x:Key="Day">За день</v:String>
+    <v:String x:Key="Hour3">За 3 часа</v:String>
+    <v:String x:Key="Days3">За 3 дня</v:String>
+    <v:String x:Key="Repeat">Повтор</v:String>
+    <v:String x:Key="Search">Поиск</v:String>
+    <v:String x:Key="Phone">Телефон</v:String>
+    <v:String x:Key="Language">Язык</v:String>
+    <v:String x:Key="RUS">Русский</v:String>
+    <v:String x:Key="ENG">Английский</v:String>
+    <v:String x:Key="Color">Цвет</v:String>
+    <v:String x:Key="Pink">Розовый</v:String>
+    <v:String x:Key="Blue">Голубой</v:String>
+    <v:String x:Key="Green">Зеленый</v:String>
+    <v:String x:Key="Red">Красный</v:String>
+    <v:String x:Key="Yellow">Желтый</v:String>
+</ResourceDictionary>
