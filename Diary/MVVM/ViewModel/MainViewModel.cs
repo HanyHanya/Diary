@@ -1,4 +1,5 @@
 ﻿using Diary.Core;
+using Diary.MVVM.Model.PrimaryModels;
 using Diary.MVVM.View;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,15 @@ namespace Diary.MVVM.ViewModel
         public SettingsControlViewModel SettVM { get; set; }
 
 
+        private User _authorisedauser;
+
+        public User AuthorisedUser
+        {
+            get { return _authorisedauser; }
+            set { _authorisedauser = value; OnPropertyChanged(); }
+        }
+
+
         private object _currentView;
         public object CurrentView
         {
@@ -34,12 +44,14 @@ namespace Diary.MVVM.ViewModel
             }
         }
 
-        public MainViewModel(MonthControlViewModel MonthVM)
+        public MainViewModel(MonthControlViewModel MonthVM, User authorisedUser = null)
         {
             MonthVM = new MonthControlViewModel();
             YearVM = new YearControlViewModel();
             SettVM = new SettingsControlViewModel();
             CurrentView = MonthVM;
+
+            AuthorisedUser = authorisedUser;
 
             MonthViewCommand = new RelayCommand(o =>
             {

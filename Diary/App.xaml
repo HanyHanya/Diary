@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Diary"
              xmlns:viewModel="clr-namespace:Diary.MVVM.ViewModel"
              xmlns:view="clr-namespace:Diary.MVVM.View"
-             StartupUri="MainWindow.xaml">
+             StartupUri="/MVVM/View/RegistrationWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <DataTemplate DataType="{x:Type viewModel:MonthControlViewModel}">

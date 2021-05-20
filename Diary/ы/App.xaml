@@ -1,0 +1,29 @@
+﻿<Application x:Class="Diary.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Diary"
+             xmlns:viewModel="clr-namespace:Diary.MVVM.ViewModel"
+             xmlns:view="clr-namespace:Diary.MVVM.View"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type viewModel:MonthControlViewModel}">
+                <view:MonthControl/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:YearControlViewModel}">
+                <view:YearControl/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:SettingsControlViewModel}">
+                <view:SettingsControl/>
+            </DataTemplate>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Pink.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Pink.xaml" />
+
+                <ResourceDictionary Source="Themes/Language/Lang_RUS.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

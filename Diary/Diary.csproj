@@ -149,17 +149,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MVVM\Model\ApplicationContext.cs" />
-    <Compile Include="MVVM\Model\Primary Models\CONTACT.cs" />
-    <Compile Include="MVVM\Model\Primary Models\EVENT.cs" />
-    <Compile Include="MVVM\Model\Primary Models\EVENT_TYPE.cs" />
+    <Compile Include="MVVM\Model\PrimaryModels\Enums\NotificationMode.cs" />
+    <Compile Include="MVVM\Model\PrimaryModels\Contact.cs" />
+    <Compile Include="MVVM\Model\PrimaryModels\Event.cs" />
+    <Compile Include="MVVM\Model\PrimaryModels\Enums\RepeatMode.cs" />
     <Compile Include="MVVM\Model\Repository\IRepository.cs" />
-    <Compile Include="MVVM\Model\Primary Models\REPEAT.cs" />
-    <Compile Include="MVVM\Model\Repository\SQLContactRepository.cs" />
-    <Compile Include="MVVM\Model\Repository\SQLEventRepository.cs" />
-    <Compile Include="MVVM\Model\Repository\SQLTaskRepository.cs" />
-    <Compile Include="MVVM\Model\Primary Models\STATUS.cs" />
-    <Compile Include="MVVM\Model\Primary Models\TASK.cs" />
-    <Compile Include="MVVM\Model\Primary Models\USER.cs" />
+    <None Include="MVVM\Model\Repository\Obsolete\SQLContactRepository.cs" />
+    <None Include="MVVM\Model\Repository\Obsolete\SQLEventRepository.cs" />
+    <None Include="MVVM\Model\Repository\Obsolete\SQLTaskRepository.cs" />
+    <Compile Include="MVVM\Model\PrimaryModels\Task.cs" />
+    <Compile Include="MVVM\Model\PrimaryModels\User.cs" />
+    <Compile Include="MVVM\Model\PrimaryModels\Enums\Status.cs" />
+    <Compile Include="MVVM\Model\Repository\SqlContactRepository.cs" />
+    <Compile Include="MVVM\Model\Repository\SqlEventRepository.cs" />
+    <Compile Include="MVVM\Model\Repository\SqlRepository.cs" />
+    <Compile Include="MVVM\Model\Repository\SqlTaskRepository.cs" />
+    <Compile Include="MVVM\Model\Repository\SqlUserRepository.cs" />
     <Compile Include="MVVM\Model\UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="MVVM\Model\UnitOfWork\UnitOfWorkEF.cs" />
     <Compile Include="MVVM\Model\UnitOfWork\UnitOfWorkSingleton.cs" />

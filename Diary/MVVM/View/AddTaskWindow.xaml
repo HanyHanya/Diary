@@ -15,20 +15,21 @@
             <RowDefinition Height="136*"/>
             <RowDefinition Height="41*"/>
         </Grid.RowDefinitions>
-        <TextBox
+        <TextBox Text="{Binding Name}"
                 materialDesign:HintAssist.Hint="{DynamicResource Title}" Grid.Column="0" Grid.Row="0"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 VerticalAlignment="Center" Margin="10,0,79.6,5.2" Height="34"/>
         <TextBlock Text="{DynamicResource Term}" Grid.Column="0" Grid.Row="1"
                 Margin="10,0.8,79.6,3.2"/>
-        <DatePicker  Width="80" materialDesign:HintAssist.Hint="{DynamicResource Date}"
+        <DatePicker Text="{Binding EndTime}" 
+                Width="80" materialDesign:HintAssist.Hint="{DynamicResource Date}"
                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
                 Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Margin="10,12.8,0,5.6" Height="36" Grid.RowSpan="2"/>
         <materialDesign:TimePicker Width="60" materialDesign:HintAssist.Hint="{DynamicResource Time}"
                 Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                 Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Margin="0,12.8,18.6,5.6" Height="36" Grid.RowSpan="2"/>
         <GroupBox Header="{DynamicResource Note}" Margin="5,5.4,4.6,2.6" Grid.Row="3" Grid.Column="0">
-            <RichTextBox/>
+            <TextBox Text="{Binding Note}" />
         </GroupBox>
         <Button Command="{Binding AddCommand}"
             Content="{DynamicResource Add}" Grid.Row="4"

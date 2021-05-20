@@ -1,0 +1,42 @@
+﻿<Window x:Class="Diary.UserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diary"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Профиль" Height="250" Width="400" Foreground="#FFE91E6F">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox
+                materialDesign:HintAssist.Hint="{DynamicResource Name}" Grid.Column="0" Grid.Row="0"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                VerticalAlignment="Center" Height="34" Margin="10,11,49.8,10.2"/>
+        <TextBox
+                materialDesign:HintAssist.Hint="{DynamicResource Login}" Grid.Column="0" Grid.Row="1"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                VerticalAlignment="Center" Height="36" Margin="10,9.6,49.8,9.6"/>
+        <TextBox
+                materialDesign:HintAssist.Hint="{DynamicResource Password}" Grid.Column="0" Grid.Row="2"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                VerticalAlignment="Center" Height="36" Margin="10,9.6,49.8,9.6"/>
+        <Ellipse Height="100" Width="100" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Stroke="#FFE91E6F" 
+                 HorizontalAlignment="Center">
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="{Binding img}"/>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Button Command="{Binding UserCommand}" 
+            Grid.Column="1" Grid.Row="3" Content="{DynamicResource Save}" Margin="25 10 25 10"/>
+    </Grid>
+</Window>
