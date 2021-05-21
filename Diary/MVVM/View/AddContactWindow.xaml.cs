@@ -13,7 +13,6 @@ namespace Diary.MVVM.View
         {
             InitializeComponent();
             Instance = this;
-            DataContext = new AddContactViewModel(this);
         }
     }
 }

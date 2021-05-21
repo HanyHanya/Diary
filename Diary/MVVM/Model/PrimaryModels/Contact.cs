@@ -24,9 +24,8 @@ namespace Diary.MVVM.Model.PrimaryModels
         public User User { get; set; }
         public string UserName { get; set; }
 
-        public Contact(int id, string name, string telNum, string notes, User user)
+        public Contact(string name, string telNum, string notes, User user)
         {
-            Id = id;
             Name = name;
             TelNum = telNum;
             Notes = notes;

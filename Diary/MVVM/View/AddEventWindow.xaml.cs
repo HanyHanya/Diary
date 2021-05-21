@@ -13,7 +13,6 @@ namespace Diary.MVVM.View
         {
             Instance = this;
             InitializeComponent();
-            DataContext = new AddEventViewModel(this);
         }
     }
 }

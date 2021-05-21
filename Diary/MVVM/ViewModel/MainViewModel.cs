@@ -44,11 +44,10 @@ namespace Diary.MVVM.ViewModel
             }
         }
 
-        public MainViewModel(MonthControlViewModel MonthVM, User authorisedUser = null)
+        public MainViewModel(MonthControlViewModel MonthVM, User authorisedUser)
         {
-            MonthVM = new MonthControlViewModel();
+            MonthVM = new MonthControlViewModel(authorisedUser);
             YearVM = new YearControlViewModel();
-            SettVM = new SettingsControlViewModel();
             CurrentView = MonthVM;
 
             AuthorisedUser = authorisedUser;
@@ -63,7 +62,11 @@ namespace Diary.MVVM.ViewModel
             });
             AddTaskCommand = new RelayCommand(o =>
             {
-                new AddTaskWindow().ShowDialog();
+                AddTaskWindow taskWin = new AddTaskWindow()
+                {
+                    DataContext = new AddTaskViewModel(_authorisedauser)
+                };
+                taskWin.ShowDialog();
             });
             AddEventCommand = new RelayCommand(o =>
             {
@@ -75,11 +78,7 @@ namespace Diary.MVVM.ViewModel
             });
             RegistrationCommand = new RelayCommand(o =>
             {
-                new RegistrationWindow().ShowDialog();
-            });
-            SettingsCommand = new RelayCommand(o =>
-            {
-                CurrentView = SettVM;
+                new UserWindow().ShowDialog();
             });
         }
     }

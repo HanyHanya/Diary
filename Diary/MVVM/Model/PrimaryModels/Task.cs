@@ -9,7 +9,6 @@ namespace Diary.MVVM.Model.PrimaryModels
     {
         
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         [StringLength(50)]
@@ -26,10 +25,9 @@ namespace Diary.MVVM.Model.PrimaryModels
         {
 
         }
-        public Task(int id, string name, DateTime? endTime, string notes, Status status, User user)
+        public Task(string name, DateTime? endTime, string notes, Status status, User user)
         {
             Name = name;
-            Id = id;
             EndTime = endTime;
             Notes = notes;
             Status = status;

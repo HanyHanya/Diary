@@ -11,15 +11,24 @@ namespace Diary.MVVM.ViewModel
 {
     class MonthControlViewModel : ObservableObject
     {
-
         public RelayCommand AddTaskCommand { get; set; }
         public ObservableCollection<Task> List { get; set; }
-        public MonthControlViewModel()
+        public MonthControlViewModel(User user)
         {
-            List = new ObservableCollection<Task>(UnitOfWorkSingleton.Instance.Tasks.List);
+            List = new ObservableCollection<Task>();
+            foreach (Task entry in UnitOfWorkSingleton.Instance.Tasks.List)
+            {
+                if (entry.UserName == user.UserName)
+                {
+                    List.Add(entry);
+                }
+            }
             foreach (Event entry in UnitOfWorkSingleton.Instance.Events.List)
             {
-                List.Add(entry);
+                if(entry.UserName == user.UserName)
+                {
+                    List.Add(entry);
+                }
             }
 
             // Для демонстрации
@@ -27,7 +36,26 @@ namespace Diary.MVVM.ViewModel
             //var contacts = UnitOfWorkSingleton.Instance.Contacts.List.ToList();
             AddTaskCommand = new RelayCommand(o =>
             {
-                new AddTaskWindow().ShowDialog();
+                AddTaskWindow addWindow = new AddTaskWindow()
+                {
+                    DataContext = new AddTaskViewModel(user)
+                };
+                addWindow.ShowDialog();
+                List.Clear();
+                foreach (Task entry in UnitOfWorkSingleton.Instance.Tasks.List)
+                {
+                    if (entry.UserName == user.UserName)
+                    {
+                        List.Add(entry);
+                    }
+                }
+                foreach (Event entry in UnitOfWorkSingleton.Instance.Events.List)
+                {
+                    if (entry.UserName == user.UserName)
+                    {
+                        List.Add(entry);
+                    }
+                }
             });
         }
     }

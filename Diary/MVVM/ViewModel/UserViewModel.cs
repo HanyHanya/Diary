@@ -11,12 +11,13 @@ namespace Diary.MVVM.ViewModel
     class UserViewModel : ObservableObject
     {
         public RelayCommand UserCommand { get; set; }
+        public Action CloseAction { get; set; }
 
-        public UserViewModel(UserWindow ThisWindow)
+        public UserViewModel()
         {
             UserCommand = new RelayCommand(o =>
             {
-                ThisWindow.Close();
+                CloseAction();
             });
         }
     }

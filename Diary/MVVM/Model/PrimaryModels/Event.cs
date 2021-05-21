@@ -21,7 +21,7 @@ namespace Diary.MVVM.Model.PrimaryModels
         {
 
         }
-        public Event(int id, string name, DateTime? startTime, DateTime? endTime, string notes, Status status, User user,  Contact contact, RepeatMode repeatMode, NotificationMode notificationMode) : base(id, name, endTime, notes, status, user)
+        public Event(string name, DateTime? startTime, DateTime? endTime, string notes, Status status, User user,  Contact contact, RepeatMode repeatMode, NotificationMode notificationMode) : base( name, endTime, notes, status, user)
         {
             StartTime = startTime;
             Contact = contact;

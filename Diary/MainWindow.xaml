@@ -29,7 +29,7 @@
         </Grid.RowDefinitions>
         <Border Grid.Column="0" Grid.Row="10" Grid.RowSpan="2"
                 Background="#f8bbd0"/>
-        
+
         <Button Command="{Binding MonthViewCommand}"
             Style="{StaticResource MaterialDesignFlatButton}"
             ToolTip="MaterialDesignFlatButton"
@@ -39,10 +39,16 @@
                  Grid.Column="0" Grid.Row="10"
                  Margin="0,4,10,3.2"
                  Height="Auto" HorizontalAlignment="Right" Width="48"
-                 Command="{Binding SettingsCommand}">
+                 Command="{Binding RegistrationCommand}">
             <materialDesign:PackIcon Kind="Settings"/>
         </Button>
-        <Button Grid.Row="12" HorizontalAlignment="Center" Content="{DynamicResource LogIn}" Command="{Binding RegistrationCommand}" />
+        <Ellipse Height="50" Width="50" Grid.Column="0" Grid.Row="10" Stroke="#FFE91E6F" StrokeThickness="1"
+                 HorizontalAlignment="Center" Margin="10,11.6,88,34.4" Grid.RowSpan="2">
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="{Binding img}"/>
+            </Ellipse.Fill>
+        </Ellipse>
+        <TextBlock Text="{Binding UserName}" Grid.Row="11" Height="20" Width="Auto" FontSize="12" HorizontalAlignment="Right" Margin="10"/>
         <Button Command="{Binding YearViewCommand}"
             Style="{StaticResource MaterialDesignFlatButton}"
             ToolTip="MaterialDesignFlatButton"

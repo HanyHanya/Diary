@@ -12,15 +12,32 @@ namespace Diary.MVVM.ViewModel
 {
     class AddTaskViewModel : ObservableObject
     {
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set { name = value; OnPropertyChanged(); }
+        }
+        private DateTime? endTime;
+        public DateTime? EndTime {
+            get { return endTime; }
+            set { endTime = value; OnPropertyChanged(); }
+        }
+        private string note;
+        public string Note {
+            get { return note; }
+            set { note = value; OnPropertyChanged(); } 
+        }
+
         public RelayCommand AddCommand { get; set; }
-        public AddTaskViewModel(AddTaskWindow ThisWindow)
+        public AddTaskViewModel(User user)
         {
             AddCommand = new RelayCommand(o =>
             {
                 var uow = UnitOfWorkSingleton.Instance;
-                //uow.Tasks.Create(new Model.PrimaryModels.Task(1, "Сделать бд кошкомальчиков", DateTime.Now, "Кошкомальчики лучшие", Status.Started, user));
+                uow.Tasks.Create(new Model.PrimaryModels.Task(Name, EndTime, Note, Status.Started, user));
                 uow.SaveChanges();
-                ThisWindow.Close();
+                //ThisWindow.Close();
             });
         }
     }

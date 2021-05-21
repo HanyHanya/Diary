@@ -23,8 +23,6 @@ namespace Diary
         public static RegistrationWindow Instance { get; internal set; }
         public RegistrationWindow()
         {
-            //Uri IconUri = new Uri(@"D:\lab\sem4\ООП\курсовой\Ресурсы\Icon.png");
-            //this.Icon = BitmapFrame.Create(IconUri);
             Instance = this;
             InitializeComponent();
             DataContext = new RegistrationViewModel(this);

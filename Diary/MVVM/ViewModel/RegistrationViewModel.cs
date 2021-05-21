@@ -56,8 +56,15 @@ namespace Diary.MVVM.ViewModel
                         if(Name.Length != 0)
                         {
                             var uow = UnitOfWorkSingleton.Instance;
-                            uow.Users.Create(new User(Login, Password, Name));
+                            User user = new User(Login, Password, Name);
+                            uow.Users.Create(user);
                             uow.SaveChanges();
+                            MainWindow mainWindow = new MainWindow()
+                            {
+                                DataContext = new MainViewModel(new MonthControlViewModel(user),user)
+                            };
+                            mainWindow.Show();
+                            ThisWindow.Close();
                         }
                         else
                         {
@@ -74,20 +81,36 @@ namespace Diary.MVVM.ViewModel
                     MessageBox.Show("Введите имя пользователя!");
                 }
                 
-
-                new MainWindow().ShowDialog();
-                new UserWindow().ShowDialog();
-                ThisWindow.Close();
             });
             AutoriseCommand = new RelayCommand(o =>
             {
-                if (Login.Length != 0)
+                if (Login.Length != 0)//вылетает
                 {
                     if (Password.Length != 0)
                     {
                         
                         var uow = UnitOfWorkSingleton.Instance;
-                        if (uow.Users.Get);
+                        User user = uow.Users.GetElement(Login);
+                        if (user != null)//протащить юзера как-нибудь умнее
+                        {
+                            if (user.Password == Password)
+                            {
+                                MainWindow mainWindow = new MainWindow()
+                                {
+                                    DataContext = new MainViewModel(new MonthControlViewModel(user), user)
+                                };
+                                mainWindow.Show();// nullReferensExeption за шо
+                                ThisWindow.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Вы все беспарольные!");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Вы все дураки!");
+                        }
                     }
                     else
                     {
@@ -98,8 +121,7 @@ namespace Diary.MVVM.ViewModel
                 {
                     MessageBox.Show("Введите имя пользователя!");
                 }
-                new MainWindow().ShowDialog();
-                ThisWindow.Close();
+                
             });
         }
     }

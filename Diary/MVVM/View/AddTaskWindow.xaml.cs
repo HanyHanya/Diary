@@ -25,7 +25,6 @@ namespace Diary
         {
             Instance = this;
             InitializeComponent();
-            DataContext = new AddTaskViewModel(this);
         }
     }
 }

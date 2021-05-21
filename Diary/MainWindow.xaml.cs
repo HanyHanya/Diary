@@ -12,11 +12,11 @@ namespace Diary
     public partial class MainWindow : Window
     {
         public static MainWindow Instance { get; internal set; }
+        
         public MainWindow()
         {
             InitializeComponent();
             Instance = this;
-            DataContext = new MainViewModel(new MonthControlViewModel());
 
             #region DbFill
 

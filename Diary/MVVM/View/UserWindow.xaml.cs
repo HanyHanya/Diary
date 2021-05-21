@@ -1,4 +1,5 @@
-﻿using Diary.MVVM.ViewModel;
+﻿using Diary.MVVM.Model.PrimaryModels;
+using Diary.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,13 @@ namespace Diary
         public static UserWindow Instance { get; internal set; }
         public UserWindow()
         {
+            UserViewModel VM = new UserViewModel();
             Instance = this;
             InitializeComponent();
-            DataContext = new UserViewModel(this);
+            DataContext = VM;
+            if (VM.CloseAction == null)
+                VM.CloseAction = new Action(this.Close);
+
         }
     }
 }

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Diary"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Добавить задачу" Height="300" Width="200" Foreground="#FFE91E6F">
     <Grid>
@@ -21,6 +21,7 @@
                 VerticalAlignment="Center" Margin="10,0,79.6,5.2" Height="34"/>
         <TextBlock Text="{DynamicResource Term}" Grid.Column="0" Grid.Row="1"
                 Margin="10,0.8,79.6,3.2"/>
+        <!--<xctk:DateTimePicker Grid.Row="2" Margin="10 8" Text="{Binding EndTime}"/>-->
         <DatePicker Text="{Binding EndTime}" 
                 Width="80" materialDesign:HintAssist.Hint="{DynamicResource Date}"
                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
