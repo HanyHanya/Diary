@@ -29,6 +29,9 @@ namespace Diary.MVVM.ViewModel
             set { note = value; OnPropertyChanged(); } 
         }
 
+
+        public Action CloseAction { get; set; }
+
         public RelayCommand AddCommand { get; set; }
         public AddTaskViewModel(User user)
         {
@@ -37,7 +40,7 @@ namespace Diary.MVVM.ViewModel
                 var uow = UnitOfWorkSingleton.Instance;
                 uow.Tasks.Create(new Model.PrimaryModels.Task(Name, EndTime, Note, Status.Started, user));
                 uow.SaveChanges();
-                //ThisWindow.Close();
+                //CloseAction();
             });
         }
     }

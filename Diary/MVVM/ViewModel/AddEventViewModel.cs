@@ -14,8 +14,8 @@ namespace Diary.MVVM.ViewModel
     {
         string Name { get; set; }
         string Note { get; set; }
-        DateTime Start { get; set; }
-        DateTime End { get; set; }
+        DateTime? Start { get; set; }
+        DateTime? End { get; set; }
         Contact contact { get; set; }
         //string ContactName { get; set; }
         Status status { get; set; }
@@ -31,7 +31,7 @@ namespace Diary.MVVM.ViewModel
             AddCommand = new RelayCommand(o =>
             {
                 var uow = UnitOfWorkSingleton.Instance;
-                uow.Events.Create(new Model.PrimaryModels.Event(Name, Start, End, Note, status, user, contact, repeat, notification));//придумать что-то с ID или вкинуть его в identity
+                uow.Events.Create(new Model.PrimaryModels.Event(Name, Start, End, Note, Status.InProcess, user, contact, RepeatMode.DoNotRepeat, NotificationMode.DoNotNotify));
                 uow.SaveChanges();
                 //ThisWindow.Close();
             });

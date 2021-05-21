@@ -18,27 +18,35 @@ namespace Diary.MVVM.ViewModel
         static ApplicationContext db = new ApplicationContext();
 
         private string login;
-
         public string Login
         {
             get { return login; }
             set { login = value; OnPropertyChanged(); }
         }
-
         private string password;
-
         public string Password
         {
             get { return password; }
             set { password = value; OnPropertyChanged(); }
         }
-
         private string name;
-
         public string Name
         {
             get { return name; }
             set { name = value; OnPropertyChanged(); }
+        }
+
+        private string loginUN;
+        public string LoginUN
+        {
+            get { return loginUN; }
+            set { loginUN = value; OnPropertyChanged(); }
+        }
+        private string loginPassword;
+        public string LoginPassword
+        {
+            get { return loginPassword; }
+            set { loginPassword = value; OnPropertyChanged(); }
         }
 
 
@@ -49,79 +57,91 @@ namespace Diary.MVVM.ViewModel
         {
             RegistraitionCommand = new RelayCommand(o =>
             {
-                if (Login.Length != 0 )
+                try
                 {
-                    if (Password.Length!=0)
+                    if (Login != null)
                     {
-                        if(Name.Length != 0)
+                        if (Password != null)
                         {
-                            var uow = UnitOfWorkSingleton.Instance;
-                            User user = new User(Login, Password, Name);
-                            uow.Users.Create(user);
-                            uow.SaveChanges();
-                            MainWindow mainWindow = new MainWindow()
+                            if (Name != null)
                             {
-                                DataContext = new MainViewModel(new MonthControlViewModel(user),user)
-                            };
-                            mainWindow.Show();
-                            ThisWindow.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Введите имя!");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Введите пароль");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Введите имя пользователя!");
-                }
-                
-            });
-            AutoriseCommand = new RelayCommand(o =>
-            {
-                if (Login.Length != 0)//вылетает
-                {
-                    if (Password.Length != 0)
-                    {
-                        
-                        var uow = UnitOfWorkSingleton.Instance;
-                        User user = uow.Users.GetElement(Login);
-                        if (user != null)//протащить юзера как-нибудь умнее
-                        {
-                            if (user.Password == Password)
-                            {
+                                var uow = UnitOfWorkSingleton.Instance;
+                                User user = new User(Login, Password, Name);
+                                uow.Users.Create(user);
+                                uow.SaveChanges();
                                 MainWindow mainWindow = new MainWindow()
                                 {
                                     DataContext = new MainViewModel(new MonthControlViewModel(user), user)
                                 };
-                                mainWindow.Show();// nullReferensExeption за шо
+                                mainWindow.Show();
                                 ThisWindow.Close();
                             }
                             else
                             {
-                                MessageBox.Show("Вы все беспарольные!");
+                                MessageBox.Show("Введите имя!");
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Вы все дураки!");
+                            MessageBox.Show("Введите пароль");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Введите пароль");
+                        MessageBox.Show("Введите имя пользователя!");
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Введите имя пользователя!");
+                    MessageBox.Show(ex.Message);
                 }
-                
+            });
+            AutoriseCommand = new RelayCommand(o =>
+            {
+                try
+                {
+                    if (LoginUN != null)//вылетает
+                    {
+                        if (LoginPassword != null)
+                        {
+
+                            var uow = UnitOfWorkSingleton.Instance;
+                            User user = uow.Users.GetElement(LoginUN);
+                            if (user != null)//протащить юзера как-нибудь умнее
+                            {
+                                if (user.Password == LoginPassword)
+                                {
+                                    MainWindow mainWindow = new MainWindow()
+                                    {
+                                        DataContext = new MainViewModel(new MonthControlViewModel(user), user)
+                                    };
+                                    mainWindow.Show();// nullReferensExeption за шо
+                                    ThisWindow.Close();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Неверный пароль!");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Пользователь не найден!");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Введите пароль");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Введите имя пользователя!");
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             });
         }
     }

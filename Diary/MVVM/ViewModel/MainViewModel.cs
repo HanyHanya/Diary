@@ -70,15 +70,27 @@ namespace Diary.MVVM.ViewModel
             });
             AddEventCommand = new RelayCommand(o =>
             {
-                new AddEventWindow().ShowDialog();
+                AddEventWindow taskWin = new AddEventWindow()
+                {
+                    DataContext = new AddEventViewModel(_authorisedauser)
+                };
+                taskWin.ShowDialog();
             });
             AddContactCommand = new RelayCommand(o =>
             {
-                new AddContactWindow().ShowDialog();
+                AddContactWindow taskWin = new AddContactWindow()
+                {
+                    DataContext = new AddContactViewModel(_authorisedauser)
+                };
+                taskWin.ShowDialog();
             });
             RegistrationCommand = new RelayCommand(o =>
             {
-                new UserWindow().ShowDialog();
+                UserWindow taskWin = new UserWindow()
+                {
+                    DataContext = new UserViewModel(_authorisedauser)
+                };
+                taskWin.ShowDialog();
             });
         }
     }

@@ -149,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MVVM\Model\ApplicationContext.cs" />
+    <Compile Include="MVVM\Model\ICloseWindows.cs" />
     <Compile Include="MVVM\Model\PrimaryModels\Enums\NotificationMode.cs" />
     <Compile Include="MVVM\Model\PrimaryModels\Contact.cs" />
     <Compile Include="MVVM\Model\PrimaryModels\Event.cs" />
