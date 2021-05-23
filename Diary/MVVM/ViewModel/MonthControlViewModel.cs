@@ -12,6 +12,7 @@ namespace Diary.MVVM.ViewModel
     class MonthControlViewModel : ObservableObject
     {
         public RelayCommand AddTaskCommand { get; set; }
+        public Task SelectedEvent { get; set; }
         public ObservableCollection<Task> List { get; set; }
         public MonthControlViewModel(User user)
         {

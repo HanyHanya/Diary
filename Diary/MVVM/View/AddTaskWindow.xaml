@@ -30,10 +30,10 @@
                 Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                 Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Margin="0,12.8,18.6,5.6" Height="36" Grid.RowSpan="2"/>
         <GroupBox Header="{DynamicResource Note}" Margin="5,5.4,4.6,2.6" Grid.Row="3" Grid.Column="0">
-            <TextBox Text="{Binding Note}" />
+            <TextBox Text="{Binding Note}" TextWrapping="Wrap"/>
         </GroupBox>
-        <Button Command="{Binding AddCommand}"
-            Content="{DynamicResource Add}" Grid.Row="4"
+        <Button Command="{Binding AddCommand}" Click="Button_Click"
+            Content="{DynamicResource Add}" Grid.Row="4" 
             HorizontalAlignment="Center" Margin="5" Height="Auto" Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10"/>
     </Grid>
 </Window>

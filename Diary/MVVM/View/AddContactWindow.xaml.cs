@@ -14,5 +14,10 @@ namespace Diary.MVVM.View
             InitializeComponent();
             Instance = this;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

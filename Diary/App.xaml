@@ -13,9 +13,6 @@
             <DataTemplate DataType="{x:Type viewModel:YearControlViewModel}">
                 <view:YearControl/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:SettingsControlViewModel}">
-                <view:SettingsControl/>
-            </DataTemplate>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />

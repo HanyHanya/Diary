@@ -36,7 +36,7 @@
                 <ImageBrush ImageSource="{Binding img}"/>
             </Ellipse.Fill>
         </Ellipse>
-        <Button Command="{Binding UserCommand}" 
+        <Button Command="{Binding UserCommand}"  Click="Button_Click"
             Grid.Column="1" Grid.Row="3" Content="{DynamicResource Save}" Margin="25 10 25 10"/>
     </Grid>
 </Window>

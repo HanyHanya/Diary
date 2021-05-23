@@ -126,10 +126,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MVVM\View\SettingsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MVVM\View\UserWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -196,9 +192,6 @@
     </Compile>
     <Compile Include="MVVM\View\RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVVM\View\SettingsControl.xaml.cs">
-      <DependentUpon>SettingsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>

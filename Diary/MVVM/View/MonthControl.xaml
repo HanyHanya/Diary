@@ -24,7 +24,7 @@
         <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Width="150" Height="35"
                 Content="{DynamicResource Add}" Margin="97,125.2,97,25.4" Command="{Binding AddTaskCommand}"/>
         <ScrollViewer x:Name="scrl" BorderThickness="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,38,10,85.4" Height="427" Width="324">
-            <ListBox x:Name="TaskControl" BorderThickness="0" Background="GhostWhite" ItemsSource="{Binding List}">
+            <ListBox x:Name="TaskControl" BorderThickness="0" Background="GhostWhite" ItemsSource="{Binding List}" SelectedItem="{Binding SelectedEvent}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
@@ -36,6 +36,7 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBox x:Name="ContactName" Grid.Column="0" Text="{Binding Name}" TextWrapping="Wrap"/>
                                 <RadioButton Grid.Column="1" HorizontalAlignment="Left"/>
+                                <!--<Button Grid.Column="2" Content=">"  Command="{Binding AddCommand}"/>-->
                             </Grid>
                         </StackPanel>
                     </DataTemplate>

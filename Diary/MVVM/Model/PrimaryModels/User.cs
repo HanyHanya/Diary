@@ -1,15 +1,31 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 
 namespace Diary.MVVM.Model.PrimaryModels
 {
     [Table("Users")]
-    public partial class User
+    public partial class User/* : INotifyPropertyChanged*/
     {
         [Key]
         [StringLength(50)]
         public string UserName { get; set; }
+        //private string username;
+
+        //public event PropertyChangedEventHandler PropertyChanged;
+        //public void OnPropertyChanged([CallerMemberName] string prop = "")
+        //{
+        //    if (PropertyChanged != null)
+        //        PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        //}
+
+        //public string UserName 
+        //{   
+        //    get { return username; }
+        //    set { username = value;}
+        //}
 
         [StringLength(15)]
         public string Password { get; set; }

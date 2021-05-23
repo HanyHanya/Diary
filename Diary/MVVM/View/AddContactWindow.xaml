@@ -19,18 +19,18 @@
             <RowDefinition Height="146*"/>
             <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
-        <TextBox Text="{Binding Name}"
+        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
                 materialDesign:HintAssist.Hint="{DynamicResource Name}" Grid.Column="0" Grid.Row="0"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 VerticalAlignment="Center" Height="34" Margin="10,0,9.6,1.2" Grid.ColumnSpan="2"/>
-        <TextBox Text="{Binding Tel}"
+        <TextBox Text="{Binding Tel,UpdateSourceTrigger=PropertyChanged}"
                 materialDesign:HintAssist.Hint="{DynamicResource Phone}" Grid.Column="0"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 VerticalAlignment="Center" Height="34" Margin="10,0.8,9.6,0.4" Grid.Row="1" Grid.ColumnSpan="2"/>
         <TextBlock Text="{DynamicResource Note}" Grid.Column="0" Grid.Row="2" Margin="10,3.6,9.6,0.4" Grid.ColumnSpan="2"/>
-        <TextBox Text="{Binding Note}"
+        <TextBox Text="{Binding Note, UpdateSourceTrigger=PropertyChanged}"
             Margin="5,19.6,4.6,3.8" Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-        <Button Command="{Binding AddCommand}"
+        <Button Command="{Binding AddCommand}" Click="Button_Click"
             Content="{DynamicResource Add}" Grid.Row="4"
             HorizontalAlignment="Center" Margin="59,3.2,58.6,5.4" Height="Auto" Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10" Width="76" Grid.ColumnSpan="2"/>
     </Grid>
