@@ -53,15 +53,16 @@
         </GroupBox>
         <ComboBox materialDesign:HintAssist.Hint="{DynamicResource Repeat}" materialDesign:HintAssist.HintOpacity=".26"
                 Margin="10.2,0,49.6,0" Grid.Column="1"
-                IsEditable="True" Height="27">
+                IsEditable="True" Height="27"
+                SelectedItem="{Binding repeat}">
             <ComboBoxItem Content="Не повторять"/>
             <ComboBoxItem Content="Ежедневно" />
             <ComboBoxItem Content="Еженедельно" />
             <ComboBoxItem Content="Раз в две недели" />
             <ComboBoxItem Content="Ежемесячно" />
         </ComboBox>
-        <TextBlock Text="{DynamicResource Remind}" Grid.Column="1" Grid.Row="1" Margin="10,0.8,79.8,1.2"/>
-        <ComboBox materialDesign:HintAssist.HintOpacity=".26"
+        <!--<TextBlock Text="{DynamicResource Remind}" Grid.Column="1" Grid.Row="1" Margin="10,0.8,79.8,1.2"/>-->
+        <ComboBox materialDesign:HintAssist.Hint="{DynamicResource Remind}" materialDesign:HintAssist.HintOpacity=".26"
                 Margin="10.2,7,49.6,21.4" Grid.Column="1" Grid.Row="2"
                 IsEditable="True" Height="22">
             <ComboBoxItem Content="{DynamicResource DoNotRemind}" />
@@ -81,5 +82,4 @@
             Content="{DynamicResource Add}" Grid.Row="7" Grid.Column="1"
             Margin="89.2,5,9.6,5.4" Height="Auto" Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10"/>
     </Grid>
-
 </Window>

@@ -18,22 +18,22 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBox Text="{Binding user.Name}"
+        <TextBox Text="{Binding Name, Mode = TwoWay }"
                 materialDesign:HintAssist.Hint="{DynamicResource Name}" Grid.Column="0" Grid.Row="0"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 VerticalAlignment="Center" Height="34" Margin="10,11,49.8,10.2"/>
-        <TextBox Text="{Binding user.Login}"
+        <TextBox Text="{Binding Login, Mode = TwoWay}"
                 materialDesign:HintAssist.Hint="{DynamicResource Login}" Grid.Column="0" Grid.Row="1"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 VerticalAlignment="Center" Height="36" Margin="10,9.6,49.8,9.6"/>
-        <TextBox Text="{Binding user.Password}"
+        <TextBox Text="{Binding Password, Mode = TwoWay}"
                 materialDesign:HintAssist.Hint="{DynamicResource Password}" Grid.Column="0" Grid.Row="2"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 VerticalAlignment="Center" Height="36" Margin="10,9.6,49.8,9.6"/>
         <Ellipse Height="100" Width="100" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Stroke="#FFE91E6F" 
                  HorizontalAlignment="Center">
             <Ellipse.Fill>
-                <ImageBrush ImageSource="{Binding img}"/>
+                <ImageBrush ImageSource="{Binding Img, Mode = TwoWay}"/>
             </Ellipse.Fill>
         </Ellipse>
         <Button Command="{Binding UserCommand}"  Click="Button_Click"

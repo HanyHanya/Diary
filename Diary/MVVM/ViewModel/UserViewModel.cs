@@ -31,24 +31,37 @@ namespace Diary.MVVM.ViewModel
             get { return name; }
             set { name = value; OnPropertyChanged("Name"); }
         }
+        private byte[] img;
+        public byte[] Img
+        {
+            get { return img; }
+            set { img = value; }
+        }
+        private User _authorisedauser;
+        public User AuthorisedUser
+        {
+            get { return _authorisedauser; }
+            set { _authorisedauser = value; OnPropertyChanged(); }
+        }
+
 
         public RelayCommand UserCommand { get; set; }
         public Action Close { get; set; }
-        void CloseWindow()
-        {
-            Close?.Invoke();
-        }
 
         public UserViewModel(User user)
         {
+            AuthorisedUser = user;
+            Name = AuthorisedUser.Name;
+            Password = AuthorisedUser.Password;
+            Login = AuthorisedUser.UserName;
+
             UserCommand = new RelayCommand(o =>
             {
                 var uow = UnitOfWorkSingleton.Instance;
-                Name = user.Name;
-                Password = user.Password;
-                Login = user.UserName;
-                //uow.SaveChanges();
-                CloseWindow();
+                AuthorisedUser.Name = Name;
+                AuthorisedUser.Password = Password;
+                AuthorisedUser.UserName = Login;
+                uow.SaveChanges();
             });
         }
     }

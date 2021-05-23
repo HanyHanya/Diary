@@ -7,9 +7,24 @@ namespace Diary.MVVM.ViewModel
 {
     class AddContactViewModel : ObservableObject
     {
-        string Name { get; set; }
-        string Tel { get; set; }
-        string Note { get; set; }
+        private string name;
+        public string Name 
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        private string tel;
+        public string Tel
+        {
+            get { return tel; }
+            set { tel = value; }
+        }
+        private string note;
+        public string Note
+        {
+            get { return note; }
+            set { note = value; }
+        }
 
         public RelayCommand AddCommand { get; set; }
         public AddContactViewModel(User user)
@@ -17,9 +32,8 @@ namespace Diary.MVVM.ViewModel
             AddCommand = new RelayCommand(o =>
             {
                 var uow = UnitOfWorkSingleton.Instance;
-                uow.Contacts.Create(new Model.PrimaryModels.Contact(Name, Tel, Note, user));//придумать что-то с ID или вкинуть его в identity
+                uow.Contacts.Create(new Model.PrimaryModels.Contact(Name, Tel, Note, user));
                 uow.SaveChanges();
-                //ThisWindow.Close();
             });
         }
     }

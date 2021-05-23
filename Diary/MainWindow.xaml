@@ -48,7 +48,7 @@
                 <ImageBrush ImageSource="{Binding img}"/>
             </Ellipse.Fill>
         </Ellipse>
-        <TextBlock Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Grid.Row="11" Height="20" Width="Auto" FontSize="12" HorizontalAlignment="Right" Margin="10"/>
+        <TextBlock Text="{Binding UserName}" Grid.Row="11" Height="20" Width="74" FontSize="12" HorizontalAlignment="Right" Margin="0,17.6,5,10.4" />
         <Button Command="{Binding YearViewCommand}"
             Style="{StaticResource MaterialDesignFlatButton}"
             ToolTip="MaterialDesignFlatButton"

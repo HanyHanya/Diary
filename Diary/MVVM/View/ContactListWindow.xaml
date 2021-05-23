@@ -21,7 +21,7 @@
             Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10"/>
 
         <ScrollViewer BorderThickness="0" Grid.Row="1" Margin="0,0.2,-0.4,0.2">
-            <ListBox x:Name="TaskControl" BorderThickness="0" Background="GhostWhite">
+            <ListBox x:Name="TaskControl" BorderThickness="0" Background="GhostWhite" ItemsSource="{Binding List}" SelectedItem="{Binding SelectedEvent}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Background="AntiqueWhite" Orientation="Horizontal">
@@ -33,7 +33,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Image x:Name="ContactImage"/>
-                                <TextBlock x:Name="ContactName"/>
+                                <TextBlock x:Name="ContactName" Text="{Binding Name}"/>
                             </Grid>
                         </StackPanel>
                     </DataTemplate>

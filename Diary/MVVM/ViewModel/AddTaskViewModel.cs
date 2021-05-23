@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Diary.MVVM.ViewModel
 {
@@ -33,14 +34,18 @@ namespace Diary.MVVM.ViewModel
         public Action CloseAction { get; set; }
 
         public RelayCommand AddCommand { get; set; }
+        public RelayCommand SaveCommand { get; set; }
         public AddTaskViewModel(User user)
         {
             AddCommand = new RelayCommand(o =>
             {
                 var uow = UnitOfWorkSingleton.Instance;
-                uow.Tasks.Create(new Model.PrimaryModels.Task(Name, EndTime, Note, Status.Started, user));
-                uow.SaveChanges();
-                //CloseAction();
+                var task = uow.Tasks.GetElement(Name);
+                if (task == null)
+                {
+                    uow.Tasks.Create(new Model.PrimaryModels.Task(Name, EndTime, Note, Status.Started, user));
+                    uow.SaveChanges();
+                }
             });
         }
     }

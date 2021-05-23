@@ -12,15 +12,15 @@ namespace Diary.MVVM.ViewModel
 {
     class AddEventViewModel : ObservableObject
     {
-        string Name { get; set; }
-        string Note { get; set; }
-        DateTime? Start { get; set; }
-        DateTime? End { get; set; }
-        Contact contact { get; set; }
-        //string ContactName { get; set; }
-        Status status { get; set; }
-        RepeatMode repeat { get; set; }
-        NotificationMode notification { get; set; }
+        public string Name { get; set; }
+        public string Note { get; set; }
+        public DateTime? Start { get; set; }
+        public DateTime? End { get; set; }
+        public Contact contact { get; set; }
+        //public string ContactName { get; set; }
+        public Status status { get; set; }
+        public RepeatMode repeat { get; set; }
+        public NotificationMode notification { get; set; }
 
 
         public RelayCommand AddCommand { get; set; }

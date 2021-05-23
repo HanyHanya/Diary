@@ -23,9 +23,22 @@ namespace Diary.MVVM.ViewModel
         public YearControlViewModel YearVM { get; set; }
         public SettingsControlViewModel SettVM { get; set; }
 
+        private string username;
+        public string UserName
+        {
+            get { return username; }
+            set { username = value; }
+        }
+
+        private byte[] img;
+        public byte[] Img
+        {
+            get { return img; }
+            set { img = value; }
+        }
+        
 
         private User _authorisedauser;
-
         public User AuthorisedUser
         {
             get { return _authorisedauser; }
@@ -49,8 +62,10 @@ namespace Diary.MVVM.ViewModel
             MonthVM = new MonthControlViewModel(authorisedUser);
             YearVM = new YearControlViewModel();
             CurrentView = MonthVM;
-
+            
             AuthorisedUser = authorisedUser;
+            UserName = AuthorisedUser.Name;
+            Img = AuthorisedUser.Img;
 
             MonthViewCommand = new RelayCommand(o =>
             {
@@ -88,9 +103,11 @@ namespace Diary.MVVM.ViewModel
             {
                 UserWindow taskWin = new UserWindow()
                 {
-                    DataContext = new UserViewModel(_authorisedauser)
+                    DataContext = new UserViewModel(AuthorisedUser)
                 };
                 taskWin.ShowDialog();
+                UserName = null;
+                UserName = AuthorisedUser.Name;
             });
         }
     }
