@@ -13,9 +13,19 @@ namespace Diary.MVVM.ViewModel
     {
         public RelayCommand AddTaskCommand { get; set; }
         public Task SelectedEvent { get; set; }
+
+        private User _user;
+        public User User
+        {
+            get { return _user; }
+            set { _user = value; }
+        }
+
         public ObservableCollection<Task> List { get; set; }
         public MonthControlViewModel(User user)
         {
+            User = user;
+
             List = new ObservableCollection<Task>();
             foreach (Task entry in UnitOfWorkSingleton.Instance.Tasks.List)
             {
@@ -32,9 +42,6 @@ namespace Diary.MVVM.ViewModel
                 }
             }
 
-            // Для демонстрации
-            //var users = UnitOfWorkSingleton.Instance.Users.List.ToList();
-            //var contacts = UnitOfWorkSingleton.Instance.Contacts.List.ToList();
             AddTaskCommand = new RelayCommand(o =>
             {
                 AddTaskWindow addWindow = new AddTaskWindow()
@@ -42,22 +49,27 @@ namespace Diary.MVVM.ViewModel
                     DataContext = new AddTaskViewModel(user)
                 };
                 addWindow.ShowDialog();
-                List.Clear();
-                foreach (Task entry in UnitOfWorkSingleton.Instance.Tasks.List)
-                {
-                    if (entry.UserName == user.UserName)
-                    {
-                        List.Add(entry);
-                    }
-                }
-                foreach (Event entry in UnitOfWorkSingleton.Instance.Events.List)
-                {
-                    if (entry.UserName == user.UserName)
-                    {
-                        List.Add(entry);
-                    }
-                }
+                LoadTasksAndEvents();
             });
+        }
+
+        public void LoadTasksAndEvents()
+        {
+            List.Clear();
+            foreach (Task entry in UnitOfWorkSingleton.Instance.Tasks.List)
+            {
+                if (entry.UserName == User.UserName)
+                {
+                    List.Add(entry);
+                }
+            }
+            foreach (Event entry in UnitOfWorkSingleton.Instance.Events.List)
+            {
+                if (entry.UserName == User.UserName)
+                {
+                    List.Add(entry);
+                }
+            }
         }
     }
 }

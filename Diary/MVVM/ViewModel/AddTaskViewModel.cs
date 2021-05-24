@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Diary.MVVM.ViewModel
@@ -17,7 +16,7 @@ namespace Diary.MVVM.ViewModel
         public string Name
         {
             get { return name; }
-            set { name = value; OnPropertyChanged(); }
+            set { name = Convert.ToString(value); OnPropertyChanged(); }
         }
         private DateTime? endTime;
         public DateTime? EndTime {
@@ -35,18 +34,21 @@ namespace Diary.MVVM.ViewModel
 
         public RelayCommand AddCommand { get; set; }
         public RelayCommand SaveCommand { get; set; }
-        public AddTaskViewModel(User user)
+        public AddTaskViewModel(User user, MonthControlViewModel monthControlViewModel = null)
         {
             AddCommand = new RelayCommand(o =>
             {
                 var uow = UnitOfWorkSingleton.Instance;
-                var task = uow.Tasks.GetElement(Name);
-                if (task == null)
-                {
-                    uow.Tasks.Create(new Model.PrimaryModels.Task(Name, EndTime, Note, Status.Started, user));
-                    uow.SaveChanges();
-                }
+                //каким-то раком проверять значения на существование. желательно достать по ID, чтобы не привязываться к пользовательскому вводу
+                //Model.PrimaryModels.Task task = uow.Tasks.GetElement(name);
+                //if (task == null)
+                //{
+                uow.Tasks.Create(new Model.PrimaryModels.Task(Name, DateTime.Now, Note, Status.Started, user));
+                uow.SaveChanges();
+                monthControlViewModel.LoadTasksAndEvents();
+                //}
             });
+            
         }
     }
 }

@@ -13,7 +13,8 @@
             <RowDefinition Height="38*"/>
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
-        <TextBox materialDesign:HintAssist.Hint="{DynamicResource Search}" Grid.Column="0" Grid.Row="0"
+        <TextBox Text="{Binding Name}"
+                materialDesign:HintAssist.Hint="{DynamicResource Search}" Grid.Column="0" Grid.Row="0"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 HorizontalAlignment="Left" Margin="10,5,0,4.8" Width="80"/>
         <Button Content="+" Grid.Row="0" Command="{Binding AddContactCommand}"
@@ -21,7 +22,7 @@
             Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10"/>
 
         <ScrollViewer BorderThickness="0" Grid.Row="1" Margin="0,0.2,-0.4,0.2">
-            <ListBox x:Name="TaskControl" BorderThickness="0" Background="GhostWhite" ItemsSource="{Binding List}" SelectedItem="{Binding SelectedEvent}">
+            <ListBox x:Name="TaskControl" BorderThickness="0" Background="GhostWhite" ItemsSource="{Binding List}" SelectedItem="{Binding SelectedContact}" Width="170">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Background="AntiqueWhite" Orientation="Horizontal">
@@ -44,5 +45,8 @@
             Content="{DynamicResource Add}" Grid.Row="2"
             HorizontalAlignment="Center" Margin="59,4.8,58.6,5.4" Height="Auto" Background="#FFE91E63" 
             Foreground="White" FontWeight="Normal" FontSize="10" Width="76"/>
+        <Button Content="{materialDesign:PackIcon Magnify}" Grid.Row="0" Command="{Binding FindContactCommand}"
+            HorizontalAlignment="Right" Margin="0,5,58.6,4.8" Height="Auto" 
+            Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10" Width="45"/>
     </Grid>
 </Window>

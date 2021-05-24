@@ -45,7 +45,7 @@
         <Ellipse Height="50" Width="50" Grid.Column="0" Grid.Row="10" Stroke="#FFE91E6F" StrokeThickness="1"
                  HorizontalAlignment="Center" Margin="10,11.6,88,34.4" Grid.RowSpan="2">
             <Ellipse.Fill>
-                <ImageBrush ImageSource="{Binding img}"/>
+                <ImageBrush ImageSource="{Binding Img}"/>
             </Ellipse.Fill>
         </Ellipse>
         <TextBlock Text="{Binding UserName}" Grid.Row="11" Height="20" Width="74" FontSize="12" HorizontalAlignment="Right" Margin="0,17.6,5,10.4" />

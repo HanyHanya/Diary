@@ -33,10 +33,7 @@
             <TextBox Text="{Binding Note, Mode=TwoWay}" TextWrapping="Wrap"/>
         </GroupBox>
         <Button Command="{Binding AddCommand}" Click="Button_Click"
-            Content="{DynamicResource Add}" Grid.Row="4" 
-            HorizontalAlignment="Center" Margin="5,4.4,112.6,5.4" Height="Auto" Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10"/>
-        <Button Command="{Binding SaveCommand}" Click="Button_Click"
             Content="{DynamicResource Save}" Grid.Row="4" 
-            HorizontalAlignment="Center" Margin="105,5.4,4.6,5.4" Height="Auto" Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10" Width="84"/>
+            HorizontalAlignment="Center" Margin="55,2.4,57.6,7.4" Height="Auto" Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10" Width="81"/>
     </Grid>
 </Window>

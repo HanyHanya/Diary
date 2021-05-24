@@ -4,9 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Diary"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:converters="clr-namespace:Diary.Converters"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Добавить Событие" Height="300" Width="400" Foreground="#FFE91E6F">
+    <Window.Resources>
+        <converters:ContactToStringConverter x:Key="ContactConverter"/>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -75,9 +80,7 @@
         <Button Command="{Binding AddContactCommand}"
             Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" Content="+" Width="41" Margin="0,41,38.6,44.2"
             Height="Auto" HorizontalAlignment="Right" Background="{x:Null}" Foreground="#FFE91E63" BorderBrush="{x:Null}"/>
-        <ListBox Grid.Row="4" Grid.Column="1" Margin="10.2,5.2,9.6,15.2" BorderBrush="#FFE91E63" Foreground="#FFE91E63">
-            <ListBoxItem Content="{Binding Contact.Name}" />
-        </ListBox>
+        <TextBlock Text="{Binding Contact, Converter=ContactConverter}" Grid.Row="4" Grid.Column="1" Margin="10.2,5.2,9.6,15.2" Foreground="#FFE91E63"/>
         <Button Command="{Binding AddCommand}" Click="Button_Click"
             Content="{DynamicResource Add}" Grid.Row="7" Grid.Column="1"
             Margin="89.2,5,9.6,5.4" Height="Auto" Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10"/>

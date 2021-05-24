@@ -26,5 +26,12 @@ namespace Diary.MVVM.View
         {
             InitializeComponent();
         }
+
+        private void scrl_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer scroll = (ScrollViewer)sender;
+            scroll.ScrollToVerticalOffset(scroll.VerticalOffset - e.Delta / 7);
+            e.Handled = true;
+        }
     }
 }

@@ -30,13 +30,14 @@
                 materialDesign:HintAssist.Hint="{DynamicResource Password}" Grid.Column="0" Grid.Row="2"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 VerticalAlignment="Center" Height="36" Margin="10,9.6,49.8,9.6"/>
-        <Ellipse Height="100" Width="100" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Stroke="#FFE91E6F" 
+        <Button Grid.Row="3" Margin="20 5" Content="Добавить изображение" FontSize="10" Command="{Binding AddImgCommand}"/>
+        <Ellipse Height="120" Width="120" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Stroke="#FFE91E6F" StrokeThickness="2"
                  HorizontalAlignment="Center">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="{Binding Img, Mode = TwoWay}"/>
             </Ellipse.Fill>
         </Ellipse>
         <Button Command="{Binding UserCommand}"  Click="Button_Click"
-            Grid.Column="1" Grid.Row="3" Content="{DynamicResource Save}" Margin="25 10 25 10"/>
+            Grid.Column="1" Grid.Row="3" Content="{DynamicResource Save}" Margin="25 10 25 10" FontSize="12"/>
     </Grid>
 </Window>

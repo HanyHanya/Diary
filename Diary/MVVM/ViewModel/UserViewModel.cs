@@ -46,14 +46,16 @@ namespace Diary.MVVM.ViewModel
 
 
         public RelayCommand UserCommand { get; set; }
+        public RelayCommand AddImgCommand { get; set; }
         public Action Close { get; set; }
 
-        public UserViewModel(User user)
+        public UserViewModel(User user, MainViewModel MainVM = null)
         {
             AuthorisedUser = user;
             Name = AuthorisedUser.Name;
             Password = AuthorisedUser.Password;
             Login = AuthorisedUser.UserName;
+            Img = AuthorisedUser.Img;
 
             UserCommand = new RelayCommand(o =>
             {
@@ -61,8 +63,15 @@ namespace Diary.MVVM.ViewModel
                 AuthorisedUser.Name = Name;
                 AuthorisedUser.Password = Password;
                 AuthorisedUser.UserName = Login;
+                AuthorisedUser.Img = Img;
                 uow.SaveChanges();
+                MainVM.UserName = AuthorisedUser.UserName;
+                MainVM.Img = AuthorisedUser.Img;
             });
+            AddImgCommand = new RelayCommand(o =>
+           {
+               //открыть диалог и как-то записать картиночку.
+           });
         }
     }
 }

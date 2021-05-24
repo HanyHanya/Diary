@@ -27,14 +27,14 @@ namespace Diary.MVVM.ViewModel
         public string UserName
         {
             get { return username; }
-            set { username = value; }
+            set { username = value; OnPropertyChanged(); }
         }
 
         private byte[] img;
         public byte[] Img
         {
             get { return img; }
-            set { img = value; }
+            set { img = value; OnPropertyChanged(); }
         }
         
 
@@ -57,13 +57,15 @@ namespace Diary.MVVM.ViewModel
             }
         }
 
+
+
         public MainViewModel(MonthControlViewModel MonthVM, User authorisedUser)
         {
             MonthVM = new MonthControlViewModel(authorisedUser);
             YearVM = new YearControlViewModel();
-            CurrentView = MonthVM;
-            
+            CurrentView = MonthVM;            
             AuthorisedUser = authorisedUser;
+
             UserName = AuthorisedUser.Name;
             Img = AuthorisedUser.Img;
 
@@ -79,7 +81,7 @@ namespace Diary.MVVM.ViewModel
             {
                 AddTaskWindow taskWin = new AddTaskWindow()
                 {
-                    DataContext = new AddTaskViewModel(_authorisedauser)
+                    DataContext = new AddTaskViewModel(_authorisedauser, MonthVM)
                 };
                 taskWin.ShowDialog();
             });
@@ -87,7 +89,7 @@ namespace Diary.MVVM.ViewModel
             {
                 AddEventWindow taskWin = new AddEventWindow()
                 {
-                    DataContext = new AddEventViewModel(_authorisedauser)
+                    DataContext = new AddEventViewModel(_authorisedauser, MonthVM)
                 };
                 taskWin.ShowDialog();
             });
@@ -103,12 +105,19 @@ namespace Diary.MVVM.ViewModel
             {
                 UserWindow taskWin = new UserWindow()
                 {
-                    DataContext = new UserViewModel(AuthorisedUser)
+                    DataContext = new UserViewModel(AuthorisedUser, this)
                 };
                 taskWin.ShowDialog();
-                UserName = null;
-                UserName = AuthorisedUser.Name;
+                
             });
+        }
+         
+        public void UserInfoUpdate()
+        {
+            UserName = null;
+            Img = null;
+            UserName = AuthorisedUser.Name;
+            Img = AuthorisedUser.Img;
         }
     }
 }
