@@ -14,11 +14,18 @@ namespace Diary.MVVM.ViewModel
 {
     class ContactListViewModel : ObservableObject
     {
-        public string Name { get; set; }
+        private string name;
+        public string Name 
+        { 
+            get { return name; }
+            set { name = value; OnPropertyChanged(); }
+        }
         public RelayCommand AddContactCommand { get; set; }
         public RelayCommand AddCommand { get; set; }
         public RelayCommand FindContactCommand { get; set; }
+        public RelayCommand ChangeContactCommand { get; set; }
         public ObservableCollection<Contact> List { get; set; }
+        User _user { get; set; }
 
         private Contact _selectedContact;
 
@@ -31,8 +38,9 @@ namespace Diary.MVVM.ViewModel
         //доступ к окну ChangeContactWindow, передавать SelectedContact
         //Сюда сортировку докинуть 
         //ВЫбор контакта + его удаление и подробное описание. Проще всего сделать докинув кнопку, но она отказывается докидываться
-        public ContactListViewModel(User user, AddEventViewModel addEventViewModel = null)
+        public ContactListViewModel(User user, AddEventViewModel addEventViewModel)
         {
+            _user = user;
             List = new ObservableCollection<Contact>();
             foreach (Contact entry in UnitOfWorkSingleton.Instance.Contacts.List)
             {
@@ -49,20 +57,12 @@ namespace Diary.MVVM.ViewModel
                     DataContext = new AddContactViewModel(user)
                 };
                 taskWin.ShowDialog();
-                List.Clear();
-                foreach (Contact entry in UnitOfWorkSingleton.Instance.Contacts.List)
-                {
-                    if (entry.UserName == user.UserName)
-                    {
-                        List.Add(entry);
-                    }
-                }
+                RefreshContactList();
             });
             AddCommand = new RelayCommand(o =>
             {
                 if (SelectedContact != null)
                 {
-                    MessageBox.Show("Вот тут дорлжен выбираться контакт и передаваться в окошко к событию, я ебала.");
                     if (addEventViewModel != null)
                         addEventViewModel.Contact = SelectedContact;
                 }
@@ -70,6 +70,15 @@ namespace Diary.MVVM.ViewModel
                 {
                     MessageBox.Show("Выберите контакт");
                 }
+            });
+            //не вызывается 
+            ChangeContactCommand = new RelayCommand(o =>
+            {
+                ChangeContactWindow taskWin = new ChangeContactWindow()
+                {
+                    DataContext = new ChangeContactViewModel(SelectedContact, this)
+                };
+                taskWin.ShowDialog();
             });
             FindContactCommand = new RelayCommand(o =>
             {
@@ -90,6 +99,17 @@ namespace Diary.MVVM.ViewModel
                 }
 
             });
+        }
+        public void RefreshContactList()
+        {
+            List.Clear();
+            foreach (Contact entry in UnitOfWorkSingleton.Instance.Contacts.List)
+            {
+                if (entry.UserName == _user.UserName)
+                {
+                    List.Add(entry);
+                }
+            }
         }
     }
 }

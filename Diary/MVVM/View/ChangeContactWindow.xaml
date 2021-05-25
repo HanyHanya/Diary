@@ -30,7 +30,7 @@
         <TextBlock Text="{DynamicResource Note}" Grid.Column="0" Grid.Row="2" Margin="10,4.4,9.6,0.4" Grid.ColumnSpan="2"/>
         <TextBox Text="{Binding Note, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"
             Margin="10,4.6,9.6,4" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"/>
-        <Button Command="{Binding ChangeCommand}" Click="Button_Click"
+        <Button Command="{Binding ChangeCommand}"
             Content="{DynamicResource Save}" Grid.Row="4"
             HorizontalAlignment="Center" Margin="55,3,53.6,5.4" Height="Auto" Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10" Width="85" Grid.ColumnSpan="2"/>
     </Grid>

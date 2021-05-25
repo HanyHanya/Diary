@@ -80,7 +80,7 @@
         <Button Command="{Binding AddContactCommand}"
             Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" Content="+" Width="41" Margin="0,41,38.6,44.2"
             Height="Auto" HorizontalAlignment="Right" Background="{x:Null}" Foreground="#FFE91E63" BorderBrush="{x:Null}"/>
-        <TextBlock Text="{Binding Contact, Converter=ContactConverter}" Grid.Row="4" Grid.Column="1" Margin="10.2,5.2,9.6,15.2" Foreground="#FFE91E63"/>
+        <TextBlock Text="{Binding Contact.Name}" Grid.Row="4" Grid.Column="1" Margin="10.2,5.2,9.6,15.2" Foreground="#FFE91E63"/>
         <Button Command="{Binding AddCommand}" Click="Button_Click"
             Content="{DynamicResource Add}" Grid.Row="7" Grid.Column="1"
             Margin="89.2,5,9.6,5.4" Height="Auto" Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10"/>

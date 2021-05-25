@@ -15,28 +15,32 @@ namespace Diary.MVVM.ViewModel
         public string Name
         {
             get { return name; }
-            set { name = value; }
+            set { name = value; OnPropertyChanged(); }
         }
         private string tel;
         public string Tel
         {
             get { return tel; }
-            set { tel = value; }
+            set { tel = value; OnPropertyChanged(); }
         }
         private string note;
         public string Note
         {
             get { return note; }
-            set { note = value; }
+            set { note = value; OnPropertyChanged(); }
         }
 
         public RelayCommand CangeCommand { get; set; }
-        public ChangeContactViewModel(User user)
+        public ChangeContactViewModel(Contact contact, ContactListViewModel ContactListVM)
         {
            CangeCommand = new RelayCommand(o =>
             {
                 var uow = UnitOfWorkSingleton.Instance;
+                contact.Name = Name;
+                contact.Notes = Note;
+                contact.TelNum = Tel;
                 uow.SaveChanges();
+                ContactListVM.RefreshContactList();
             });
         }
     }   

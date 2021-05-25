@@ -26,6 +26,9 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Background="AntiqueWhite" Orientation="Horizontal">
+                            <StackPanel.InputBindings>
+                                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding DataContext.ChangeContactCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}"/>
+                            </StackPanel.InputBindings>
                             <Grid MaxHeight="60" Grid.Row="1">
                                 <!--<Border BorderBrush="Black" BorderThickness="0 0 0 2" HorizontalAlignment="Center" Margin="128,0,136.8,425.6" Width="0"/>-->
                                 <Grid.ColumnDefinitions>

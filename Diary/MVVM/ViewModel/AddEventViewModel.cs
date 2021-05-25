@@ -47,7 +47,7 @@ namespace Diary.MVVM.ViewModel
             {
                 ContactListWindow taskWin = new ContactListWindow()
                 {
-                    DataContext = new ContactListViewModel(user)
+                    DataContext = new ContactListViewModel(user, this)
                 };
                 taskWin.ShowDialog();
             });
