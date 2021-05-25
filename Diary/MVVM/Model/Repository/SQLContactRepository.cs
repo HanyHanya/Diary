@@ -11,5 +11,9 @@ namespace Diary.MVVM.Model.Repository
         }
 
         public override IEnumerable<Contact> List => dbset.AsNoTracking().Include(x => x.User).Include(x=>x.Events);
+        public void RemoveContact(Contact contact)
+        {
+            dbset.Remove(contact);
+        }
     }
 }

@@ -7,6 +7,9 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Список контактов" Height="300" Width="200" Foreground="#FFE91E6F">
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding ChangeContactCommand}" CommandParameter="{Binding SelectedContact}" Gesture="Enter" />
+    </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="9*"/>
@@ -30,13 +33,11 @@
                                 <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding DataContext.ChangeContactCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}"/>
                             </StackPanel.InputBindings>
                             <Grid MaxHeight="60" Grid.Row="1">
-                                <!--<Border BorderBrush="Black" BorderThickness="0 0 0 2" HorizontalAlignment="Center" Margin="128,0,136.8,425.6" Width="0"/>-->
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="20*"/>
-                                    <ColumnDefinition Width="80*"/>
-                                </Grid.ColumnDefinitions>
 
-                                <Image x:Name="ContactImage"/>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80*"/>
+                                    <ColumnDefinition Width="20*"/>
+                                </Grid.ColumnDefinitions>
                                 <TextBlock x:Name="ContactName" Text="{Binding Name}"/>
                             </Grid>
                         </StackPanel>
@@ -44,9 +45,13 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </ScrollViewer>
+        <Button Command="{Binding ChangeContactCommand}"
+            Content="Изменить" Grid.Row="2"
+            HorizontalAlignment="Right" Margin="0,4.8,9.6,5.4" Height="Auto" Background="#FFE91E63" 
+            Foreground="White" FontWeight="Normal" FontSize="10" Width="79"/>
         <Button Command="{Binding AddCommand}"
             Content="{DynamicResource Add}" Grid.Row="2"
-            HorizontalAlignment="Center" Margin="59,4.8,58.6,5.4" Height="Auto" Background="#FFE91E63" 
+            HorizontalAlignment="Left" Margin="10,4.8,0,5.4" Height="Auto" Background="#FFE91E63" 
             Foreground="White" FontWeight="Normal" FontSize="10" Width="76"/>
         <Button Content="{materialDesign:PackIcon Magnify}" Grid.Row="0" Command="{Binding FindContactCommand}"
             HorizontalAlignment="Right" Margin="0,5,58.6,4.8" Height="Auto" 

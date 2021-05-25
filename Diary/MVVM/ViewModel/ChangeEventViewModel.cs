@@ -31,14 +31,22 @@ namespace Diary.MVVM.ViewModel
 
 
         public RelayCommand SaveCommand { get; set; }
+        public RelayCommand DelCommand { get; set; }
 
-        public ChangeEventViewModel(User user, MonthControlViewModel MonthVM = null)
+        public ChangeEventViewModel(Diary.MVVM.Model.PrimaryModels.Event _event, MonthControlViewModel MonthVM)
         {
-           SaveCommand = new RelayCommand(o =>
+            SaveCommand = new RelayCommand(o =>
             {
                 var uow = UnitOfWorkSingleton.Instance;
                 uow.SaveChanges();
                 MonthVM.LoadTasksAndEvents();
+            });
+            DelCommand = new RelayCommand(o =>
+            {
+                var uow = UnitOfWorkSingleton.Instance;
+                uow.Events.Delete(_event.Id);
+                MonthVM.LoadTasksAndEvents();
+                uow.SaveChanges();
             });
         }
     }

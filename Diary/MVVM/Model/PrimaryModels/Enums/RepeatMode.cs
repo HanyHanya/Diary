@@ -5,7 +5,7 @@
         DoNotRepeat,
         RepeatDaily,
         RepeatWeekly,
-        RepeatTwiceAWeek,
+        RepeatTwiceAWeek,   //Раз в две недели ы
         RepeatMonthly
     }
 

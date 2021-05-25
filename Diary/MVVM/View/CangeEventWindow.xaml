@@ -83,10 +83,10 @@
         <TextBlock Text="{Binding Contact.Name}" Grid.Row="4" Grid.Column="1" Margin="10.2,5.2,9.6,15.2" Foreground="#FFE91E63"/>
         <Button Command="{Binding CangeCommand}"
             Content="{DynamicResource Save}" Grid.Row="7" Grid.Column="1"
-            Margin="103.2,5,9.6,5.4" Height="Auto" Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10"/>
-        <Button Content="{materialDesign:PackIcon DeleteOutline}" Grid.Row="7" Grid.Column="1" Command="{Binding FindContactCommand}"
+            Margin="103.2,5,9.6,5.4" Height="Auto" Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10" Click="Button_Click"/>
+        <Button Content="{materialDesign:PackIcon DeleteOutline}" Grid.Row="7" Grid.Column="1" Command="{Binding DelCommand}"
             HorizontalAlignment="Left" Margin="0.2,5,0,4.4" Height="Auto" 
-            Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10" Width="45"/>
+            Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10" Width="53" Click="Button_Click_1"/>
 
     </Grid>
 </Window>

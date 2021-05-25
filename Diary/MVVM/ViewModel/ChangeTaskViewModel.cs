@@ -34,16 +34,25 @@ namespace Diary.MVVM.ViewModel
         public Action CloseAction { get; set; }
 
         public RelayCommand SaveCommand { get; set; }
-        public ChangeTaskViewModel(User user, MonthControlViewModel monthControlViewModel = null)
+        public RelayCommand DelCommand { get; set; }
+        public ChangeTaskViewModel(Model.PrimaryModels.Task task, MonthControlViewModel monthControlViewModel)
         {
+            Name = task.Name;
+            EndTime = task.EndTime;
+            note = task.Notes;
             SaveCommand = new RelayCommand(o =>
             {
                 var uow = UnitOfWorkSingleton.Instance;
-                //каким-то раком проверять значения на существование. желательно достать по ID, чтобы не привязываться к пользовательскому вводу
                 uow.SaveChanges();
                 monthControlViewModel.LoadTasksAndEvents();
             });
-
+            DelCommand = new RelayCommand(o =>
+            {
+                var uow = UnitOfWorkSingleton.Instance;
+                uow.Tasks.Delete(task.Id);
+                monthControlViewModel.LoadTasksAndEvents();
+                uow.SaveChanges();
+            });
         }
     }
 }

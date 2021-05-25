@@ -3,6 +3,7 @@ using Diary.MVVM.Model;
 using Diary.MVVM.Model.PrimaryModels;
 using Diary.MVVM.Model.UnitOfWork;
 using Diary.MVVM.View;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,12 +66,18 @@ namespace Diary.MVVM.ViewModel
                 AuthorisedUser.UserName = Login;
                 AuthorisedUser.Img = Img;
                 uow.SaveChanges();
-                MainVM.UserName = AuthorisedUser.UserName;
+                MainVM.UserName = AuthorisedUser.Name;
                 MainVM.Img = AuthorisedUser.Img;
             });
             AddImgCommand = new RelayCommand(o =>
            {
-               //открыть диалог и как-то записать картиночку.
+               OpenFileDialog openDialog = new OpenFileDialog();
+               openDialog.Filter = "Image files (*.png;*.jpeg; *.jpg)|*.png;*.jpeg; *.jpg";
+               openDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+               if (openDialog.ShowDialog() == true)
+               {
+                   //Img = openDialog.FileName;
+               }
            });
         }
     }

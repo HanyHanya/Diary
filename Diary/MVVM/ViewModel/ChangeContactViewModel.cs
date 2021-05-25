@@ -30,17 +30,31 @@ namespace Diary.MVVM.ViewModel
             set { note = value; OnPropertyChanged(); }
         }
 
-        public RelayCommand CangeCommand { get; set; }
+        public Contact _contact { get; set; }
+
+        public RelayCommand ChangeCommand { get; set; }
+        public RelayCommand DelCommand { get; set; }
         public ChangeContactViewModel(Contact contact, ContactListViewModel ContactListVM)
         {
-           CangeCommand = new RelayCommand(o =>
+            _contact = contact;
+            Name = _contact.Name;
+            Tel = _contact.TelNum;
+            Note = _contact.Notes;
+            ChangeCommand = new RelayCommand(o =>       //игнорирует
             {
                 var uow = UnitOfWorkSingleton.Instance;
-                contact.Name = Name;
-                contact.Notes = Note;
-                contact.TelNum = Tel;
+                _contact.Name = Name;
+                _contact.Notes = Note;
+                _contact.TelNum = Tel;
                 uow.SaveChanges();
                 ContactListVM.RefreshContactList();
+            });
+            DelCommand = new RelayCommand(o =>
+            {
+                var uow = UnitOfWorkSingleton.Instance;
+                uow.Contacts.Delete(contact.Id);
+                ContactListVM.RefreshContactList();
+                uow.SaveChanges();
             });
         }
     }   

@@ -71,7 +71,6 @@ namespace Diary.MVVM.ViewModel
                     MessageBox.Show("Выберите контакт");
                 }
             });
-            //не вызывается 
             ChangeContactCommand = new RelayCommand(o =>
             {
                 ChangeContactWindow taskWin = new ChangeContactWindow()

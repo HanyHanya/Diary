@@ -6,13 +6,16 @@ using System.Text;
 using System.Collections.ObjectModel;
 using Diary.MVVM.Model.PrimaryModels;
 using Diary.MVVM.Model.UnitOfWork;
+using System.Windows;
+using Diary.MVVM.View;
 
 namespace Diary.MVVM.ViewModel
 {
     class MonthControlViewModel : ObservableObject
     {
-        public RelayCommand AddTaskCommand { get; set; }
+        public RelayCommand ChangeTaskCommand { get; set; }
         public Task SelectedEvent { get; set; }
+        public Event Selected { get; set; }
 
         private User _user;
         public User User
@@ -45,14 +48,32 @@ namespace Diary.MVVM.ViewModel
                 }
             }
 
-            AddTaskCommand = new RelayCommand(o =>
+            ChangeTaskCommand = new RelayCommand(o =>
             {
-                AddTaskWindow addWindow = new AddTaskWindow()
+                if( SelectedEvent is Event)
                 {
-                    DataContext = new AddTaskViewModel(user)
-                };
-                addWindow.ShowDialog();
-                LoadTasksAndEvents();
+                    Selected = SelectedEvent as Event;
+                    CangeEventWindow addWindow = new CangeEventWindow()
+                    {
+                        DataContext = new ChangeEventViewModel(Selected, this)
+                    };
+                    addWindow.ShowDialog();
+                    LoadTasksAndEvents();
+                }
+                else if (SelectedEvent is Task)
+                {
+                    CangeTaskWindow addWindow = new CangeTaskWindow()
+                    {
+                        DataContext = new ChangeTaskViewModel(SelectedEvent, this)
+                    };
+                    addWindow.ShowDialog();
+                    LoadTasksAndEvents();
+                }
+                else if (SelectedEvent == null)
+                {
+                    MessageBox.Show("Выберите событие/задачу");
+                }
+                
             });
         }
 
