@@ -58,7 +58,6 @@ namespace Diary.MVVM.ViewModel
         }
 
 
-
         public MainViewModel(MonthControlViewModel MonthVM, User authorisedUser)
         {
             MonthVM = new MonthControlViewModel(authorisedUser);

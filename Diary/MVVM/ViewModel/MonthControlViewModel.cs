@@ -21,6 +21,9 @@ namespace Diary.MVVM.ViewModel
             set { _user = value; }
         }
 
+        //через SelectedTask перепрыгнуть к окну ChangeTask/ChangeEvent в зависимости от типа, там изменпить, изменения сохранить. Вопрос только как команду запустить.
+        //докинуть так же удаление
+
         public ObservableCollection<Task> List { get; set; }
         public MonthControlViewModel(User user)
         {

@@ -115,6 +115,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="MVVM\View\CangeEventWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\CangeTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\ChangeContactWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\ContactListWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -169,6 +181,9 @@
     <Compile Include="MVVM\ViewModel\AddContactViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddEventViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddTaskViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\ChangeContactViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\ChangeEventViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\ChangeTaskViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ContactListViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MonthControlViewModel.cs" />
@@ -184,6 +199,15 @@
     </Compile>
     <Compile Include="MVVM\View\AddTaskWindow.xaml.cs">
       <DependentUpon>AddTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\CangeEventWindow.xaml.cs">
+      <DependentUpon>CangeEventWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\CangeTaskWindow.xaml.cs">
+      <DependentUpon>CangeTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\ChangeContactWindow.xaml.cs">
+      <DependentUpon>ChangeContactWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\ContactListWindow.xaml.cs">
       <DependentUpon>ContactListWindow.xaml</DependentUpon>

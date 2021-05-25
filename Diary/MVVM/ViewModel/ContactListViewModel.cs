@@ -28,6 +28,7 @@ namespace Diary.MVVM.ViewModel
             set { _selectedContact = value; OnPropertyChanged(); }
         }
 
+        //доступ к окну ChangeContactWindow, передавать SelectedContact
         //Сюда сортировку докинуть 
         //ВЫбор контакта + его удаление и подробное описание. Проще всего сделать докинув кнопку, но она отказывается докидываться
         public ContactListViewModel(User user, AddEventViewModel addEventViewModel = null)

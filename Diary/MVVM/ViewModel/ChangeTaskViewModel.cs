@@ -1,16 +1,15 @@
 ﻿using Diary.Core;
 using Diary.MVVM.Model.PrimaryModels;
 using Diary.MVVM.Model.UnitOfWork;
-using Diary.MVVM.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows;
+using System.Threading.Tasks;
 
 namespace Diary.MVVM.ViewModel
 {
-    class AddTaskViewModel : ObservableObject
+    class ChangeTaskViewModel : ObservableObject
     {
         private string name;
         public string Name
@@ -19,35 +18,33 @@ namespace Diary.MVVM.ViewModel
             set { name = Convert.ToString(value); OnPropertyChanged(); }
         }
         private DateTime? endTime;
-        public DateTime? EndTime {
+        public DateTime? EndTime
+        {
             get { return endTime; }
             set { endTime = value; OnPropertyChanged(); }
         }
         private string note;
-        public string Note {
+        public string Note
+        {
             get { return note; }
-            set { note = value; OnPropertyChanged(); } 
+            set { note = value; OnPropertyChanged(); }
         }
 
 
         public Action CloseAction { get; set; }
 
-        public RelayCommand AddCommand { get; set; }
-        public AddTaskViewModel(User user, MonthControlViewModel monthControlViewModel = null)
+        public RelayCommand SaveCommand { get; set; }
+        public ChangeTaskViewModel(User user, MonthControlViewModel monthControlViewModel = null)
         {
-            AddCommand = new RelayCommand(o =>
+            SaveCommand = new RelayCommand(o =>
             {
                 var uow = UnitOfWorkSingleton.Instance;
                 //каким-то раком проверять значения на существование. желательно достать по ID, чтобы не привязываться к пользовательскому вводу
-                //Model.PrimaryModels.Task task = uow.Tasks.GetElement(name);
-                //if (task == null)
-                //{
-                uow.Tasks.Create(new Model.PrimaryModels.Task(Name, DateTime.Now, Note, Status.Started, user));
                 uow.SaveChanges();
                 monthControlViewModel.LoadTasksAndEvents();
-                //}
             });
-            
+
         }
     }
 }
+
