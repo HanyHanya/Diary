@@ -10,7 +10,7 @@ namespace Diary.MVVM.Model.PrimaryModels
        
         public DateTime? StartTime { get; set; }
 
-        public int ContactId { get; set; }
+        public int? ContactId { get; set; }
 
         public Contact Contact { get; set; }
 

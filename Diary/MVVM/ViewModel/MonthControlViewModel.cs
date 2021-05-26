@@ -40,7 +40,7 @@ namespace Diary.MVVM.ViewModel
                     Selected = SelectedEvent as Event;
                     CangeEventWindow addWindow = new CangeEventWindow()
                     {
-                        DataContext = new ChangeEventViewModel(Selected, this)
+                        DataContext = new ChangeEventViewModel(Selected, this, user)
                     };
                     addWindow.ShowDialog();
                     LoadTasksAndEvents();
@@ -72,13 +72,15 @@ namespace Diary.MVVM.ViewModel
                     List.Add(entry);
                 }
             }
-            foreach (Event entry in UnitOfWorkSingleton.Instance.Events.List)
-            {
-                if (entry.UserName == User.UserName)
-                {
-                    List.Add(entry);
-                }
-            }
+
+            //var users = UnitOfWorkSingleton.Instance.Users.List.ToList();
+            //foreach (Event entry in UnitOfWorkSingleton.Instance.Events.List)
+            //{
+            //    if (entry.UserName == User.UserName)
+            //    {
+            //        List.Add(entry);
+            //    }
+            //}
         }
     }
 }

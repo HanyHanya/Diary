@@ -46,7 +46,27 @@ namespace Diary.MVVM.ViewModel
             }
             set
             {
-                start = value; OnPropertyChanged();
+                if (value >= DateTime.Now)
+                {
+                    start = value;
+                    OnPropertyChanged();
+                }
+                else
+                {
+                    MessageBox.Show("Выберите корректную дату начала");
+                }
+            }
+        }
+        private DateTime? starttime;
+        public DateTime? StartTime
+        {
+            get
+            {
+                return starttime;
+            }
+            set
+            {
+                starttime = value; OnPropertyChanged();
             }
         }
         private DateTime? end;
@@ -58,7 +78,27 @@ namespace Diary.MVVM.ViewModel
             }
             set
             {
-                end = value; OnPropertyChanged();
+                if (value >= Start)
+                {
+                    end = value;
+                    OnPropertyChanged();
+                }
+                else
+                {
+                    MessageBox.Show("Выберите корректную дату окончания");
+                }
+            }
+        }
+        private DateTime? endtime;
+        public DateTime? EndTime
+        {
+            get
+            {
+                return endtime;
+            }
+            set
+            {
+                endtime = value; OnPropertyChanged();
             }
         }
         private Contact _contact;
@@ -151,25 +191,28 @@ namespace Diary.MVVM.ViewModel
 
             AddCommand = new RelayCommand(o =>
             {
-                //try
-                //{
+                try
+                {
                     var uow = UnitOfWorkSingleton.Instance;
-                    uow.Events.Create(new Model.PrimaryModels.Event(Name, Start, End, Note, Status.InProcess, user, Contact, Repeat, Notification));
-                    uow.SaveChanges(); //пытается создать нового юзера
+                    var newevent = new Model.PrimaryModels.Event(Name, ChangeTime((DateTime)Start, (DateTime)StartTime), ChangeTime((DateTime)End, (DateTime)EndTime), Note, Status.InProcess, user, Contact, Repeat, Notification);
+                    newevent.ContactId = Contact?.Id;
+                    newevent.Contact = null;
+                    uow.Events.Create(newevent);
+                    uow.SaveChanges(); 
                     MonthVM.LoadTasksAndEvents();
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show(ex.Message);
-                //}
-            });
+                }
+                    catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+        });
             AddContactCommand = new RelayCommand(o =>
             {
                 try
                 {
                     ContactListWindow taskWin = new ContactListWindow()
                     {
-                        DataContext = new ContactListViewModel(user, this)
+                        DataContext = new ContactListViewModel(user, this, null)
                     };
                     taskWin.ShowDialog();
                 }
@@ -178,6 +221,20 @@ namespace Diary.MVVM.ViewModel
                     MessageBox.Show(ex.Message);
                 }
             });
+        }
+
+
+        public static DateTime? ChangeTime(DateTime date, DateTime time)
+        {
+            return new DateTime(
+                date.Year,
+                date.Month,
+                date.Day,
+                time.Hour,
+                time.Minute,
+                time.Second,
+                time.Millisecond,
+                date.Kind);
         }
     }
 }

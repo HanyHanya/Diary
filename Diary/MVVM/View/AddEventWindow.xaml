@@ -39,12 +39,22 @@
                 Width="80" materialDesign:HintAssist.Hint="{DynamicResource Date}"
                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
                 Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="10,4.6,0,4.2" Height="36"/>
+        <materialDesign:TimePicker  SelectedTime="{Binding StartTime}"
+                  Grid.Column="0" Grid.Row="2"
+                  Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
+                  materialDesign:HintAssist.Hint="Время" Margin="105,7.2,4.8,7.2" />
+        <!--<xctk:DateTimePicker Grid.Column="0" Grid.Row="2" Margin="10 15" />-->
         <TextBlock Text="{DynamicResource End}" Grid.Column="0" Grid.Row="3"
                    Margin="10,0.8,79.8,1.2"/>
+        <!--<xctk:DateTimePicker Grid.Column="0" Grid.Row="4" Margin="10 15"/>-->
         <DatePicker  SelectedDate="{Binding End}"
                 Width="80" materialDesign:HintAssist.Hint="{DynamicResource Date}"
                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
                 Grid.Column="0" Grid.Row="4" HorizontalAlignment="Left" Margin="10,4.6,0,4.2" Height="36"/>
+        <materialDesign:TimePicker  SelectedTime="{Binding EndTime}"
+                  Grid.Column="0" Grid.Row="4"
+                  Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
+                  materialDesign:HintAssist.Hint="Время" Margin="105,7.2,4.8,7.2" />
         <GroupBox Header="{DynamicResource Note}" Margin="5" Grid.Row="5" Grid.RowSpan="3" Grid.Column="0">
             <TextBox Text="{Binding Note}" TextWrapping="Wrap"/>
         </GroupBox>
@@ -52,7 +62,7 @@
                 Margin="10.2,6,49.6,4.4" Grid.Column="1"
                 IsEditable="True" Height="28"
                 ItemsSource="{Binding RepeatList}"
-                SelectedItem="{Binding Repeat, Mode=TwoWay}"
+                SelectedItem="{Binding Repeat, Mode=OneWay}"
                 materialDesign:ComboBoxAssist.ClassicMode="{Binding ElementName=ClassicModeCheckBox, Path=IsChecked}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -60,7 +70,8 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ComboBox materialDesign:HintAssist.Hint="{DynamicResource Remind}" materialDesign:HintAssist.HintOpacity=".26"
+        <ComboBox materialDesign:HintAssist.Hint="{DynamicResource Remind}" 
+                  materialDesign:HintAssist.HintOpacity=".26"
                 Margin="10.2,7.2,49.6,14.2" Grid.Column="1" Grid.Row="2"
                 IsEditable="True" Height="29"                  
                 ItemsSource="{Binding NotificationList}"

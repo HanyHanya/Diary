@@ -29,25 +29,18 @@ namespace Diary.MVVM.ViewModel
         User _user { get; set; }
 
         private Contact _selectedContact;
-
         public Contact SelectedContact
         {
             get { return _selectedContact; }
             set { _selectedContact = value; OnPropertyChanged(); }
         }
-
-        public ContactListViewModel(User user, AddEventViewModel addEventViewModel)
+               
+        public ContactListViewModel(User user, AddEventViewModel addEventViewModel, ChangeEventViewModel ChangeEventViewModel)
         {
             
             _user = user;
             List = new ObservableCollection<Contact>();
-            //foreach (Contact entry in UnitOfWorkSingleton.Instance.Contacts.List)
-            //{
-            //    if (entry.UserName == user.UserName)
-            //    {
-            //        List.Add(entry);
-            //    }
-            //}
+            
             RefreshContactList();
 
             AddContactCommand = new RelayCommand(o =>
@@ -74,6 +67,8 @@ namespace Diary.MVVM.ViewModel
                     {
                         if (addEventViewModel != null)
                             addEventViewModel.Contact = SelectedContact;
+                        else if(ChangeEventViewModel != null)
+                            ChangeEventViewModel.Contact = SelectedContact;
                     }
                     else
                     {
@@ -113,6 +108,7 @@ namespace Diary.MVVM.ViewModel
 
             });
         }
+        
         public void RefreshContactList()
         {
             try

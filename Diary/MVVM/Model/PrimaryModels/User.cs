@@ -36,6 +36,8 @@ namespace Diary.MVVM.Model.PrimaryModels
         public byte[] Img { get; set; }
 
         public ICollection<Task> Tasks { get; set; }
+        // Вместо загрузки из таблицы ивентов, загружаются Task, которые is Event
+        [NotMapped] 
         public ICollection<Event> Events { get; set; }
         public ICollection<Contact> Contacts { get; set; }
 

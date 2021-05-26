@@ -22,7 +22,18 @@ namespace Diary.MVVM.ViewModel
         public DateTime? EndTime
         {
             get { return endTime; }
-            set { endTime = value; OnPropertyChanged(); }
+            set
+            {
+                if (value < DateTime.Now)
+                {
+                    MessageBox.Show("Выберите корректную дату окончания");
+                }
+                else
+                {
+                    endTime = value;
+                    OnPropertyChanged();
+                }
+            }
         }
         private string note;
         public string Note
