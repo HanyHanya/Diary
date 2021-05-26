@@ -35,10 +35,6 @@
                 VerticalAlignment="Center" Margin="10,0,19.8,4.4" Height="34"/>
         <TextBlock Text="{DynamicResource Start}" Grid.Column="0" Grid.Row="1"
                 Margin="10,0.6,79.8,0.4"/>
-        <CheckBox IsChecked="True" Content="{DynamicResource AllDay}"
-                Style="{StaticResource MaterialDesignLightCheckBox}" 
-                Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right"
-                Margin="5 0 20 0"/>
         <DatePicker SelectedDate="{Binding Start}"
                 Width="80" materialDesign:HintAssist.Hint="{DynamicResource Date}"
                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
@@ -53,20 +49,22 @@
             <TextBox Text="{Binding Note}" TextWrapping="Wrap"/>
         </GroupBox>
         <ComboBox materialDesign:HintAssist.Hint="{DynamicResource Repeat}" materialDesign:HintAssist.HintOpacity=".26"
-                Margin="10.2,0,49.6,0" Grid.Column="1"
-                IsEditable="True" Height="27"
-                ItemsSource="{Binding DataContext.RepeatList}"
-                SelectedItem="{Binding Repeat, Mode=TwoWay}">
+                Margin="10.2,6,49.6,4.4" Grid.Column="1"
+                IsEditable="True" Height="28"
+                ItemsSource="{Binding RepeatList}"
+                SelectedItem="{Binding Repeat, Mode=TwoWay}"
+                materialDesign:ComboBoxAssist.ClassicMode="{Binding ElementName=ClassicModeCheckBox, Path=IsChecked}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Converter={StaticResource RepeatConverter}}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <!--<TextBlock Text="{DynamicResource Remind}" Grid.Column="1" Grid.Row="1" Margin="10,0.8,79.8,1.2"/>-->
         <ComboBox materialDesign:HintAssist.Hint="{DynamicResource Remind}" materialDesign:HintAssist.HintOpacity=".26"
-                Margin="10.2,7,49.6,21.4" Grid.Column="1" Grid.Row="2"
-                IsEditable="True" Height="22">
+                Margin="10.2,7.2,49.6,14.2" Grid.Column="1" Grid.Row="2"
+                IsEditable="True" Height="29"                  
+                ItemsSource="{Binding NotificationList}"
+                materialDesign:ComboBoxAssist.ClassicMode="{Binding ElementName=ClassicModeCheckBox, Path=IsChecked}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Converter={StaticResource RemindConverter}}"/>

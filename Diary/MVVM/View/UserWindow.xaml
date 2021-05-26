@@ -31,10 +31,10 @@
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 VerticalAlignment="Center" Height="36" Margin="10,9.6,49.8,9.6"/>
         <Button Grid.Row="3" Margin="20 5" Content="Добавить изображение" FontSize="10" Command="{Binding AddImgCommand}"/>
-        <Ellipse Height="120" Width="120" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Stroke="#FFE91E6F" StrokeThickness="2"
+        <Ellipse Height="150" Width="150" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Stroke="#FFE91E6F" StrokeThickness="2"
                  HorizontalAlignment="Center">
             <Ellipse.Fill>
-                <ImageBrush ImageSource="{Binding Img, Mode = TwoWay}"/>
+                <ImageBrush ImageSource="{Binding Img}"/>
             </Ellipse.Fill>
         </Ellipse>
         <Button Command="{Binding UserCommand}"  Click="Button_Click"

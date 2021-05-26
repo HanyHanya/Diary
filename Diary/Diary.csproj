@@ -99,6 +99,7 @@
     <Compile Include="Converters\ContactToStringConverter.cs" />
     <Compile Include="Converters\RemindToString.cs" />
     <Compile Include="Converters\RepeatToString.cs" />
+    <Compile Include="Converters\StatusToBool.cs" />
     <Compile Include="Converters\StatusToString.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />

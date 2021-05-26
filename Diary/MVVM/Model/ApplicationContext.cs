@@ -11,6 +11,7 @@ namespace Diary.MVVM.Model
         public ApplicationContext()
             : base("name=ApplicationContext")
         {
+            
         }
 
         public virtual DbSet<Contact> Contacts { get; set; }
@@ -20,6 +21,8 @@ namespace Diary.MVVM.Model
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<Event>().Ignore(x => x.UserName);
+            //modelBuilder.Entity<Event>().HasRequired(x => x.User).WithMany(x => x.Events).HasForeignKey(x => x.UserName);
             // Можно вместо аттрибута Table перед классом тут указывать имена таблиц
             //modelBuilder.Entity<Task>().ToTable("Tasks");
             //modelBuilder.Entity<Event>().ToTable("Events");

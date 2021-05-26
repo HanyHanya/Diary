@@ -116,6 +116,18 @@ namespace Diary.MVVM.ViewModel
                 repeatList = value; OnPropertyChanged();
             }
         }
+        private List<NotificationMode> notificationList;
+        public List<NotificationMode> NotificationList
+        {
+            get
+            {
+                return notificationList;
+            }
+            set
+            {
+                notificationList = value; OnPropertyChanged();
+            }
+        }
 
 
         public RelayCommand AddCommand { get; set; }
@@ -123,19 +135,33 @@ namespace Diary.MVVM.ViewModel
 
         public AddEventViewModel(User user, MonthControlViewModel MonthVM = null)
         {
+            RepeatList = new List<RepeatMode>();
+            RepeatList.Add(RepeatMode.DoNotRepeat);
+            RepeatList.Add(RepeatMode.RepeatDaily);
+            RepeatList.Add(RepeatMode.RepeatMonthly);
+            RepeatList.Add(RepeatMode.RepeatTwiceAWeek);
+            RepeatList.Add(RepeatMode.RepeatWeekly);
+
+            NotificationList = new List<NotificationMode>();
+            NotificationList.Add(NotificationMode.DoNotNotify);
+            NotificationList.Add(NotificationMode.NotifyDayBefore);
+            NotificationList.Add(NotificationMode.NotifyHourBefore);
+            NotificationList.Add(NotificationMode.NotifyThreeDaysBefore);
+            NotificationList.Add(NotificationMode.NotifyThreeHoursBefore);
+
             AddCommand = new RelayCommand(o =>
             {
-                try
-                {
+                //try
+                //{
                     var uow = UnitOfWorkSingleton.Instance;
-                    uow.Events.Create(new Model.PrimaryModels.Event(Name, Start, End, Note, Status.InProcess, user, Contact, RepeatMode.DoNotRepeat, NotificationMode.DoNotNotify));
-                    uow.SaveChanges();
+                    uow.Events.Create(new Model.PrimaryModels.Event(Name, Start, End, Note, Status.InProcess, user, Contact, Repeat, Notification));
+                    uow.SaveChanges(); //пытается создать нового юзера
                     MonthVM.LoadTasksAndEvents();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show(ex.Message);
+                //}
             });
             AddContactCommand = new RelayCommand(o =>
             {
@@ -153,11 +179,5 @@ namespace Diary.MVVM.ViewModel
                 }
             });
         }
-    
-        private void Repeatlode()
-        {
-            var uow = UnitOfWorkSingleton.Instance;
-            ///RepeatList = uow
-        }    
     }
 }

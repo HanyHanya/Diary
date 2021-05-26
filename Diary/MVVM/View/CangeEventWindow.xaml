@@ -11,6 +11,8 @@
         Title="Добавить Событие" Height="300" Width="400" Foreground="#FFE91E6F">
     <Window.Resources>
         <converters:ContactToStringConverter x:Key="ContactConverter"/>
+        <converters:RemindToString x:Key="RemindConverter"/>
+        <converters:RepeatToString x:Key="RepeatConverter"/>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -51,24 +53,27 @@
             <TextBox Text="{Binding Note}" TextWrapping="Wrap"/>
         </GroupBox>
         <ComboBox materialDesign:HintAssist.Hint="{DynamicResource Repeat}" materialDesign:HintAssist.HintOpacity=".26"
-                Margin="10.2,0,49.6,0" Grid.Column="1"
-                IsEditable="True" Height="27"
-                SelectedItem="{Binding repeat}">
-            <ComboBoxItem Content="Не повторять"/>
-            <ComboBoxItem Content="Ежедневно" />
-            <ComboBoxItem Content="Еженедельно" />
-            <ComboBoxItem Content="Раз в две недели" />
-            <ComboBoxItem Content="Ежемесячно" />
+                Margin="10.2,6,49.6,4.4" Grid.Column="1"
+                IsEditable="True" Height="28"
+                ItemsSource="{Binding RepeatList}"
+                SelectedItem="{Binding Repeat, Mode=TwoWay}"
+                materialDesign:ComboBoxAssist.ClassicMode="{Binding ElementName=ClassicModeCheckBox, Path=IsChecked}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource RepeatConverter}}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
         </ComboBox>
-        <!--<TextBlock Text="{DynamicResource Remind}" Grid.Column="1" Grid.Row="1" Margin="10,0.8,79.8,1.2"/>-->
         <ComboBox materialDesign:HintAssist.Hint="{DynamicResource Remind}" materialDesign:HintAssist.HintOpacity=".26"
-                Margin="10.2,7,49.6,21.4" Grid.Column="1" Grid.Row="2"
-                IsEditable="True" Height="22">
-            <ComboBoxItem Content="{DynamicResource DoNotRemind}" />
-            <ComboBoxItem Content="{DynamicResource Day}" />
-            <ComboBoxItem Content="{DynamicResource Hour}" />
-            <ComboBoxItem Content="{DynamicResource Days3}" />
-            <ComboBoxItem Content="{DynamicResource Hour3}" />
+                Margin="10.2,7.2,49.6,14.2" Grid.Column="1" Grid.Row="2"
+                IsEditable="True" Height="29"                  
+                ItemsSource="{Binding NotificationList}"
+                materialDesign:ComboBoxAssist.ClassicMode="{Binding ElementName=ClassicModeCheckBox, Path=IsChecked}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource RemindConverter}}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
         </ComboBox>
         <TextBlock Text="{DynamicResource Contact}" Grid.Column="1" Grid.Row="3" Margin="10,0.8,79.8,1.2"/>
         <Button Command="{Binding AddContactCommand}"

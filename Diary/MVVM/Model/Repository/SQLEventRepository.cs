@@ -11,5 +11,7 @@ namespace Diary.MVVM.Model.Repository
         }
 
         public override IEnumerable<Event> List => dbset.AsNoTracking().Include(x => x.User);
+
+
     }
 }
