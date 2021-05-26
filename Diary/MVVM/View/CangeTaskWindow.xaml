@@ -32,7 +32,7 @@
         <GroupBox Header="{DynamicResource Note}" Margin="5,5.4,4.6,2.6" Grid.Row="3" Grid.Column="0">
             <TextBox Text="{Binding Note, Mode=TwoWay}" TextWrapping="Wrap"/>
         </GroupBox>
-        <Button Command="{Binding ChangeCommand}"
+        <Button Command="{Binding SaveCommand}"
             Content="{DynamicResource Save}" Grid.Row="4" 
             HorizontalAlignment="Center" Margin="5,5.4,103.6,4.4" Height="Auto" Background="#FFE91E63" Foreground="White" FontWeight="Normal" FontSize="10" Width="85" Click="Button_Click_1"/>
         <Button Content="{materialDesign:PackIcon DeleteOutline}" Grid.Row="4" Command="{Binding DelCommand}"

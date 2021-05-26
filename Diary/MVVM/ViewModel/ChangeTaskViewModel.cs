@@ -32,6 +32,7 @@ namespace Diary.MVVM.ViewModel
 
 
         public Action CloseAction { get; set; }
+        public Model.PrimaryModels.Task _task { get; set; }
 
         public RelayCommand SaveCommand { get; set; }
         public RelayCommand DelCommand { get; set; }
@@ -39,10 +40,14 @@ namespace Diary.MVVM.ViewModel
         {
             Name = task.Name;
             EndTime = task.EndTime;
-            note = task.Notes;
+            Note = task.Notes;
             SaveCommand = new RelayCommand(o =>
             {
                 var uow = UnitOfWorkSingleton.Instance;
+                _task = uow.Tasks.GetElement(task.Id);
+                _task.Name = Name;
+                _task.EndTime = EndTime;
+                _task.Notes = Note;
                 uow.SaveChanges();
                 monthControlViewModel.LoadTasksAndEvents();
             });

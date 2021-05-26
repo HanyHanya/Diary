@@ -36,13 +36,13 @@ namespace Diary.MVVM.ViewModel
         public RelayCommand DelCommand { get; set; }
         public ChangeContactViewModel(Contact contact, ContactListViewModel ContactListVM)
         {
-            _contact = contact;
-            Name = _contact.Name;
-            Tel = _contact.TelNum;
-            Note = _contact.Notes;
+            Name = contact.Name;
+            Tel = contact.TelNum;
+            Note = contact.Notes;
             ChangeCommand = new RelayCommand(o =>       //игнорирует
             {
                 var uow = UnitOfWorkSingleton.Instance;
+                _contact = uow.Contacts.GetElement(contact.Id);
                 _contact.Name = Name;
                 _contact.Notes = Note;
                 _contact.TelNum = Tel;

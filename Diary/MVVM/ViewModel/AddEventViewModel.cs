@@ -12,23 +12,96 @@ namespace Diary.MVVM.ViewModel
 {
     class AddEventViewModel : ObservableObject
     {
-        public string Name { get; set; }
-        public string Note { get; set; }
-        public DateTime? Start { get; set; }
-        public DateTime? End { get; set; }
-
+        private string name;
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value; OnPropertyChanged();
+            }
+        }
+        private string note;
+        public string Note
+        {
+            get
+            {
+                return note;
+            }
+            set
+            {
+                note = value; OnPropertyChanged();
+            }
+        }
+        private DateTime? start;
+        public DateTime? Start
+        {
+            get
+            {
+                return start;
+            }
+            set
+            {
+                start = value; OnPropertyChanged();
+            }
+        }
+        private DateTime? end;
+        public DateTime? End
+        {
+            get
+            {
+                return end;
+            }
+            set
+            {
+                end = value; OnPropertyChanged();
+            }
+        }
         private Contact _contact;
-
         public Contact Contact
         {
             get { return _contact; }
             set { _contact = value; OnPropertyChanged(); }
         }
-
-        //public string ContactName { get; set; }
-        public Status status { get; set; }
-        public RepeatMode repeat { get; set; }
-        public NotificationMode notification { get; set; }
+        private Status status;
+        public Status Status
+        {
+            get
+            {
+                return status;
+            }
+            set
+            {
+                status = value; OnPropertyChanged();
+            }
+        }
+        private RepeatMode repeat;
+        public RepeatMode Repeat
+        {
+            get
+            {
+                return repeat;
+            }
+            set
+            {
+                repeat = value; OnPropertyChanged();
+            }
+        }
+        private NotificationMode notification;
+        public NotificationMode Notification
+        {
+            get
+            {
+                return notification;
+            }
+            set
+            {
+                notification = value; OnPropertyChanged();
+            }
+        }
 
 
         public RelayCommand AddCommand { get; set; }
