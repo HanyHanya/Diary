@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Diary.MVVM.ViewModel
 {
@@ -57,6 +58,10 @@ namespace Diary.MVVM.ViewModel
         {
             RegistraitionCommand = new RelayCommand(o =>
             {
+                var passwordBox = o as PasswordBox;
+                if (passwordBox == null)
+                    return;
+                Password = passwordBox.Password;
                 try
                 {
                     if (Login != null)
@@ -98,6 +103,10 @@ namespace Diary.MVVM.ViewModel
             });
             AutoriseCommand = new RelayCommand(o =>
             {
+                var passwordBox = o as PasswordBox;
+                if (passwordBox == null)
+                    return;
+                LoginPassword = passwordBox.Password;
                 try
                 {
                     if (LoginUN != null)//вылетает

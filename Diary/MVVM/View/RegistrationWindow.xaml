@@ -27,11 +27,13 @@
                 materialDesign:HintAssist.Hint="{DynamicResource Login}" Grid.Column="0" Grid.Row="1"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 VerticalAlignment="Center" Margin="15"/>
-        <TextBox Text="{Binding LoginPassword}" 
+        <PasswordBox x:Name="LogInPasswordBox"
                 materialDesign:HintAssist.Hint="{DynamicResource Password}" Grid.Column="0" Grid.Row="2"
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                 VerticalAlignment="Center" Margin="15"/>
-        <Button Grid.Column="0" Grid.Row="4" Content="{DynamicResource LogIn}" Margin="25 10 25 10" Command="{Binding AutoriseCommand}"/>
+        <Button Grid.Column="0" Grid.Row="4" Content="{DynamicResource LogIn}" 
+                Margin="25 10 25 10" Command="{Binding AutoriseCommand}"
+                CommandParameter="{Binding ElementName=LogInPasswordBox}"/>
         <TextBox Text="{Binding Name}"
                 materialDesign:HintAssist.Hint="{DynamicResource Name}" Grid.Column="1" Grid.Row="1"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -40,10 +42,12 @@
                 materialDesign:HintAssist.Hint="{DynamicResource Login}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 VerticalAlignment="Center" Margin="15"/>
-        <TextBox Text="{Binding Password}"
+        <PasswordBox x:Name="RegPasswordBox"
                 materialDesign:HintAssist.Hint="{DynamicResource Password}" Grid.Column="1" Grid.Row="2"
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                 VerticalAlignment="Bottom" Margin="15 15 15 0"/>
-        <Button Grid.Column="1" Grid.Row="4" Content="{DynamicResource CheckIn}" Margin="25 10 25 10" Command="{Binding RegistraitionCommand}"/>
+        <Button Grid.Column="1" Grid.Row="4" Content="{DynamicResource CheckIn}"
+                Margin="25 10 25 10" Command="{Binding RegistraitionCommand}"
+                CommandParameter="{Binding ElementName=RegPasswordBox}"/>
     </Grid>
 </Window>
