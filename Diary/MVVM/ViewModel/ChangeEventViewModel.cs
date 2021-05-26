@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Diary.MVVM.ViewModel
 {
@@ -119,24 +120,39 @@ namespace Diary.MVVM.ViewModel
 
             SaveCommand = new RelayCommand(o =>
             {
-                var uow = UnitOfWorkSingleton.Instance;
-                _event = uow.Events.GetElement(_SelectedEvent.Id);
-                _event.Name = Name;
-                _event.Notes = Note;
-                _event.EndTime = End;
-                _event.StartTime = Start;
-                _event.Status = Status;
-                _event.RepeatMode = Repeat;
-                _event.NotificationMode = notification;
-                uow.SaveChanges();
-                MonthVM.LoadTasksAndEvents();
+                try
+                {
+                    var uow = UnitOfWorkSingleton.Instance;
+                    _event = uow.Events.GetElement(_SelectedEvent.Id);
+                    _event.Name = Name;
+                    _event.Notes = Note;
+                    _event.EndTime = End;
+                    _event.StartTime = Start;
+                    _event.Status = Status;
+                    _event.RepeatMode = Repeat;
+                    _event.NotificationMode = notification;
+                    uow.SaveChanges();
+                    MonthVM.LoadTasksAndEvents();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                
             });
             DelCommand = new RelayCommand(o =>
             {
-                var uow = UnitOfWorkSingleton.Instance;
-                uow.Events.Delete(_event.Id);
-                MonthVM.LoadTasksAndEvents();
-                uow.SaveChanges();
+                try
+                {
+                    var uow = UnitOfWorkSingleton.Instance;
+                    uow.Events.Delete(_event.Id);
+                    MonthVM.LoadTasksAndEvents();
+                    uow.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }                
             });
         }
     }

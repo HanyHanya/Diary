@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Diary.MVVM.ViewModel
 {
@@ -103,6 +104,19 @@ namespace Diary.MVVM.ViewModel
             }
         }
 
+        private List<RepeatMode> repeatList;
+        public List<RepeatMode> RepeatList
+        {
+            get
+            {
+                return repeatList;
+            }
+            set
+            {
+                repeatList = value; OnPropertyChanged();
+            }
+        }
+
 
         public RelayCommand AddCommand { get; set; }
         public RelayCommand AddContactCommand { get; set; }
@@ -111,19 +125,39 @@ namespace Diary.MVVM.ViewModel
         {
             AddCommand = new RelayCommand(o =>
             {
-                var uow = UnitOfWorkSingleton.Instance;
-                uow.Events.Create(new Model.PrimaryModels.Event(Name, Start, End, Note, Status.InProcess, user, Contact, RepeatMode.DoNotRepeat, NotificationMode.DoNotNotify));
-                uow.SaveChanges();
-                MonthVM.LoadTasksAndEvents();
+                try
+                {
+                    var uow = UnitOfWorkSingleton.Instance;
+                    uow.Events.Create(new Model.PrimaryModels.Event(Name, Start, End, Note, Status.InProcess, user, Contact, RepeatMode.DoNotRepeat, NotificationMode.DoNotNotify));
+                    uow.SaveChanges();
+                    MonthVM.LoadTasksAndEvents();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             });
             AddContactCommand = new RelayCommand(o =>
             {
-                ContactListWindow taskWin = new ContactListWindow()
+                try
                 {
-                    DataContext = new ContactListViewModel(user, this)
-                };
-                taskWin.ShowDialog();
+                    ContactListWindow taskWin = new ContactListWindow()
+                    {
+                        DataContext = new ContactListViewModel(user, this)
+                    };
+                    taskWin.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             });
         }
+    
+        private void Repeatlode()
+        {
+            var uow = UnitOfWorkSingleton.Instance;
+            ///RepeatList = uow
+        }    
     }
 }

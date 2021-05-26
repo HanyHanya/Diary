@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Diary.MVVM.ViewModel
 {
@@ -43,20 +44,34 @@ namespace Diary.MVVM.ViewModel
             Note = task.Notes;
             SaveCommand = new RelayCommand(o =>
             {
-                var uow = UnitOfWorkSingleton.Instance;
-                _task = uow.Tasks.GetElement(task.Id);
-                _task.Name = Name;
-                _task.EndTime = EndTime;
-                _task.Notes = Note;
-                uow.SaveChanges();
-                monthControlViewModel.LoadTasksAndEvents();
+                try
+                {
+                    var uow = UnitOfWorkSingleton.Instance;
+                    _task = uow.Tasks.GetElement(task.Id);
+                    _task.Name = Name;
+                    _task.EndTime = EndTime;
+                    _task.Notes = Note;
+                    uow.SaveChanges();
+                    monthControlViewModel.LoadTasksAndEvents();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             });
             DelCommand = new RelayCommand(o =>
             {
-                var uow = UnitOfWorkSingleton.Instance;
-                uow.Tasks.Delete(task.Id);
-                monthControlViewModel.LoadTasksAndEvents();
-                uow.SaveChanges();
+                try
+                {
+                    var uow = UnitOfWorkSingleton.Instance;
+                    uow.Tasks.Delete(task.Id);
+                    monthControlViewModel.LoadTasksAndEvents();
+                    uow.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             });
         }
     }

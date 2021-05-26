@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Diary.MVVM.ViewModel
 {
@@ -41,20 +42,34 @@ namespace Diary.MVVM.ViewModel
             Note = contact.Notes;
             ChangeCommand = new RelayCommand(o =>       //игнорирует
             {
-                var uow = UnitOfWorkSingleton.Instance;
-                _contact = uow.Contacts.GetElement(contact.Id);
-                _contact.Name = Name;
-                _contact.Notes = Note;
-                _contact.TelNum = Tel;
-                uow.SaveChanges();
-                ContactListVM.RefreshContactList();
+                try
+                {
+                    var uow = UnitOfWorkSingleton.Instance;
+                    _contact = uow.Contacts.GetElement(contact.Id);
+                    _contact.Name = Name;
+                    _contact.Notes = Note;
+                    _contact.TelNum = Tel;
+                    uow.SaveChanges();
+                    ContactListVM.RefreshContactList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             });
             DelCommand = new RelayCommand(o =>
             {
-                var uow = UnitOfWorkSingleton.Instance;
-                uow.Contacts.Delete(contact.Id);
-                ContactListVM.RefreshContactList();
-                uow.SaveChanges();
+                try
+                {
+                    var uow = UnitOfWorkSingleton.Instance;
+                    uow.Contacts.Delete(contact.Id);
+                    ContactListVM.RefreshContactList();
+                    uow.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             });
         }
     }   

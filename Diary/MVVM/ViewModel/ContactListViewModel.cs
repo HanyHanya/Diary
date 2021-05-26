@@ -25,6 +25,7 @@ namespace Diary.MVVM.ViewModel
         public RelayCommand FindContactCommand { get; set; }
         public RelayCommand ChangeContactCommand { get; set; }
         public ObservableCollection<Contact> List { get; set; }
+        public ObservableCollection<Contact> SortList { get; set; }
         User _user { get; set; }
 
         private Contact _selectedContact;
@@ -35,40 +36,53 @@ namespace Diary.MVVM.ViewModel
             set { _selectedContact = value; OnPropertyChanged(); }
         }
 
-        //доступ к окну ChangeContactWindow, передавать SelectedContact
-        //Сюда сортировку докинуть 
-        //ВЫбор контакта + его удаление и подробное описание. Проще всего сделать докинув кнопку, но она отказывается докидываться
         public ContactListViewModel(User user, AddEventViewModel addEventViewModel)
         {
+            
             _user = user;
             List = new ObservableCollection<Contact>();
-            foreach (Contact entry in UnitOfWorkSingleton.Instance.Contacts.List)
-            {
-                if (entry.UserName == user.UserName)
-                {
-                    List.Add(entry);
-                }
-            }
+            //foreach (Contact entry in UnitOfWorkSingleton.Instance.Contacts.List)
+            //{
+            //    if (entry.UserName == user.UserName)
+            //    {
+            //        List.Add(entry);
+            //    }
+            //}
+            RefreshContactList();
 
             AddContactCommand = new RelayCommand(o =>
             {
-                AddContactWindow taskWin = new AddContactWindow()
+                try
                 {
-                    DataContext = new AddContactViewModel(user)
-                };
-                taskWin.ShowDialog();
-                RefreshContactList();
+                    AddContactWindow taskWin = new AddContactWindow()
+                    {
+                        DataContext = new AddContactViewModel(user)
+                    };
+                    taskWin.ShowDialog();
+                    RefreshContactList();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             });
             AddCommand = new RelayCommand(o =>
             {
-                if (SelectedContact != null)
+                try
                 {
-                    if (addEventViewModel != null)
-                        addEventViewModel.Contact = SelectedContact;
+                    if (SelectedContact != null)
+                    {
+                        if (addEventViewModel != null)
+                            addEventViewModel.Contact = SelectedContact;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Выберите контакт");
+                    }
                 }
-                else
+                catch(Exception ex)
                 {
-                    MessageBox.Show("Выберите контакт");
+                    MessageBox.Show(ex.Message);
                 }
             });
             ChangeContactCommand = new RelayCommand(o =>
@@ -101,13 +115,26 @@ namespace Diary.MVVM.ViewModel
         }
         public void RefreshContactList()
         {
-            List.Clear();
-            foreach (Contact entry in UnitOfWorkSingleton.Instance.Contacts.List)
+            try
             {
-                if (entry.UserName == _user.UserName)
+                List.Clear();
+                foreach (Contact entry in UnitOfWorkSingleton.Instance.Contacts.List)
+                {
+                    if (entry.UserName == _user.UserName)
+                    {
+                        List.Add(entry);
+                    }
+                }
+                SortList = new ObservableCollection<Contact>(List.OrderBy(p => p.Name));
+                List.Clear();
+                foreach (Contact entry in SortList)
                 {
                     List.Add(entry);
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

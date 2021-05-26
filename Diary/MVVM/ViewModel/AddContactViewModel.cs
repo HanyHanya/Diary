@@ -2,6 +2,8 @@
 using Diary.MVVM.Model.PrimaryModels;
 using Diary.MVVM.Model.UnitOfWork;
 using Diary.MVVM.View;
+using System;
+using System.Windows;
 
 namespace Diary.MVVM.ViewModel
 {
@@ -31,9 +33,16 @@ namespace Diary.MVVM.ViewModel
         {
             AddCommand = new RelayCommand(o =>
             {
-                var uow = UnitOfWorkSingleton.Instance;
-                uow.Contacts.Create(new Model.PrimaryModels.Contact(Name, Tel, Note, user));
-                uow.SaveChanges();
+                try
+                {
+                    var uow = UnitOfWorkSingleton.Instance;
+                    uow.Contacts.Create(new Model.PrimaryModels.Contact(Name, Tel, Note, user));
+                    uow.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             });
         }
     }

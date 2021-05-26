@@ -24,29 +24,14 @@ namespace Diary.MVVM.ViewModel
             set { _user = value; }
         }
 
-        //через SelectedTask перепрыгнуть к окну ChangeTask/ChangeEvent в зависимости от типа, там изменпить, изменения сохранить. Вопрос только как команду запустить.
-        //докинуть так же удаление
-
         public ObservableCollection<Task> List { get; set; }
+        public ObservableCollection<Task> SortList { get; set; }
         public MonthControlViewModel(User user)
         {
             User = user;
 
             List = new ObservableCollection<Task>();
-            foreach (Task entry in UnitOfWorkSingleton.Instance.Tasks.List)
-            {
-                if (entry.UserName == user.UserName)
-                {
-                    List.Add(entry);
-                }
-            }
-            foreach (Event entry in UnitOfWorkSingleton.Instance.Events.List)
-            {
-                if(entry.UserName == user.UserName)
-                {
-                    List.Add(entry);
-                }
-            }
+            LoadTasksAndEvents();
 
             ChangeTaskCommand = new RelayCommand(o =>
             {

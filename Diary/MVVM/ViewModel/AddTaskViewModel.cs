@@ -37,15 +37,18 @@ namespace Diary.MVVM.ViewModel
         {
             AddCommand = new RelayCommand(o =>
             {
-                var uow = UnitOfWorkSingleton.Instance;
-                //каким-то раком проверять значения на существование. желательно достать по ID, чтобы не привязываться к пользовательскому вводу
-                //Model.PrimaryModels.Task task = uow.Tasks.GetElement(name);
-                //if (task == null)
-                //{
-                uow.Tasks.Create(new Model.PrimaryModels.Task(Name, DateTime.Now, Note, Status.Started, user));
-                uow.SaveChanges();
-                monthControlViewModel.LoadTasksAndEvents();
-                //}
+                try
+                {
+                    var uow = UnitOfWorkSingleton.Instance;
+                    uow.Tasks.Create(new Model.PrimaryModels.Task(Name, EndTime, Note, Status.Started, user));
+                    uow.SaveChanges();
+                    monthControlViewModel.LoadTasksAndEvents();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
             });
             
         }
