@@ -49,6 +49,7 @@ namespace Diary.MVVM.ViewModel
             User = user;
 
             List = new ObservableCollection<Task>();
+            SelectedDate = DateTime.Now;
             LoadTasksAndEvents();
             ChangeDateCommand = new RelayCommand(o =>
             {
@@ -94,7 +95,8 @@ namespace Diary.MVVM.ViewModel
                     if(entry is Event )
                     {
                         ev = entry as Event;
-                        if(ev.StartTime <= SelectedDate)
+                        DateTime d = (DateTime)ev.StartTime;
+                        if(d.Day <= SelectedDate.Day)
                         {
                             List.Add(ev);
                         }

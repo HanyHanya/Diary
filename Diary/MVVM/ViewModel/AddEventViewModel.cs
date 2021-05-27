@@ -215,7 +215,7 @@ namespace Diary.MVVM.ViewModel
                 {
                     MessageBox.Show(ex.Message + ex);
                 }
-        });
+            });
             AddContactCommand = new RelayCommand(o =>
             {
                 try

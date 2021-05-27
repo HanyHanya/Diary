@@ -28,7 +28,7 @@ namespace Diary.MVVM.View
         {
             if (Name.Text.Length != 0)
             {
-                if (Start.Text.Length != 0 && End.Text.Length != 0 && StartTime.Text.Length != 0 && EndTime.Text.Length != 0)
+                if (Start.Text != null && End.Text != null && StartTime.Text != null && EndTime.Text != null)
                 {
                     if (Repeat.Text.Length != 0 && Remind.Text.Length != 0)
                     {
