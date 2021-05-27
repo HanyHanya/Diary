@@ -43,8 +43,8 @@
                                     <ColumnDefinition Width="20*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock x:Name="ContactName" Grid.Column="0" Text="{Binding Name}" TextWrapping="Wrap"/>
-                                <RadioButton Grid.Column="1" HorizontalAlignment="Left"/>
-                                <!--IsChecked="{Binding Converter={StaticResource StatusConverter}}"/>-->
+                                <CheckBox Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False"
+                                IsChecked="{Binding Status, Converter={StaticResource StatusConverter}}"/>
                             </Grid>
                         </StackPanel>
                     </DataTemplate>

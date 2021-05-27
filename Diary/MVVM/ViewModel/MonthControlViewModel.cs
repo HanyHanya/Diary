@@ -98,6 +98,7 @@ namespace Diary.MVVM.ViewModel
                         DateTime d = (DateTime)ev.StartTime;
                         if(d.Day <= SelectedDate.Day)
                         {
+                            ev.Status = Status.InProcess;
                             List.Add(ev);
                         }
                     }

@@ -25,10 +25,10 @@ namespace Diary.Converters
                     return false;
                 }
                 else 
-                    return null;
+                    return false;
             }
-            else
-                return null;
+            
+             return false;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

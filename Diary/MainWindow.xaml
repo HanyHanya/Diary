@@ -29,11 +29,6 @@
         </Grid.RowDefinitions>
         <Border Grid.Column="0" Grid.Row="10" Grid.RowSpan="2"
                 Background="#f8bbd0"/>
-
-        <Button Command="{Binding MonthViewCommand}"
-            Style="{StaticResource MaterialDesignFlatButton}"
-            ToolTip="MaterialDesignFlatButton"
-            x:Name="MonthMainButton" Content="{DynamicResource Month}" Grid.Column="0" Grid.Row="4" Margin="0,3.2,10,4" Height="Auto"/>
         <Button  Style="{StaticResource MaterialDesignFlatButton}"
             ToolTip="MaterialDesignFlatButton" x:Name="SettingsMainButton"
                  Grid.Column="0" Grid.Row="10"
@@ -49,10 +44,6 @@
             </Ellipse.Fill>
         </Ellipse>
         <TextBlock Text="{Binding UserName}" Grid.Row="11" Height="20" Width="74" FontSize="12" HorizontalAlignment="Right" Margin="0,17.6,5,10.4" />
-        <Button Command="{Binding YearViewCommand}"
-            Style="{StaticResource MaterialDesignFlatButton}"
-            ToolTip="MaterialDesignFlatButton"
-            x:Name="YearMainButton" Content="{DynamicResource Year}" Grid.Column="0" Grid.Row="5" Margin="0,4,10,3.2" Height="Auto"/>
         <TextBlock Text="{DynamicResource Add}" HorizontalAlignment="Left" 
                    Grid.Column="0" Grid.Row="6" FontSize="16"
                    Margin="20,6.8,0,5.4" TextDecorations="{x:Null}" Width="70"/>

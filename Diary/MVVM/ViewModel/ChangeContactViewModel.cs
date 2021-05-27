@@ -40,7 +40,7 @@ namespace Diary.MVVM.ViewModel
             Name = contact.Name;
             Tel = contact.TelNum;
             Note = contact.Notes;
-            ChangeCommand = new RelayCommand(o =>       //игнорирует
+            ChangeCommand = new RelayCommand(o =>  
             {
                 try
                 {

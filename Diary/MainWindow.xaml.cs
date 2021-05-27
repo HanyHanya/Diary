@@ -3,6 +3,7 @@ using Diary.MVVM.ViewModel;
 using System.Windows;
 using Diary.MVVM.Model.PrimaryModels;
 using Diary.MVVM.Model.UnitOfWork;
+using System.Windows.Media.Imaging;
 
 namespace Diary
 {
@@ -17,6 +18,8 @@ namespace Diary
         {
             InitializeComponent();
             Instance = this;
+            Uri IconUri = new Uri(@"D:\lab\sem4\ООП\курсовой\Ресурсы\Icon.png");
+            this.Icon = BitmapFrame.Create(IconUri);
 
             #region DbFill
 
