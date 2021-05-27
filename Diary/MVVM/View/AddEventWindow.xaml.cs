@@ -17,7 +17,28 @@ namespace Diary.MVVM.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            if(Name.Text.Length != 0)
+            {
+                if (Start.Text.Length != 0 && End.Text.Length != 0 && StartTime.Text.Length != 0 && EndTime.Text.Length != 0)
+                {
+                    if (Repeat.Text.Length != 0 && Remind.Text.Length != 0)
+                    {
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Выберите режимы повотрения и напоминания");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Введите даты начала и окончания");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Введите название события");
+            }
         }
     }
 }

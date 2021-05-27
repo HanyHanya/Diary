@@ -29,7 +29,21 @@ namespace Diary
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            if(Name.Text.Length !=0)
+            {
+                if(End.Text.Length != 0)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Выберите дату окончания");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Введите название");
+            }
         }
     }
 }

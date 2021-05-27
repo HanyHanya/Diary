@@ -13,7 +13,7 @@ namespace Diary.MVVM.ViewModel
         public string Name 
         {
             get { return name; }
-            set { name = value; }
+            set { name = value;}
         }
         private string tel;
         public string Tel

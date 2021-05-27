@@ -194,7 +194,17 @@ namespace Diary.MVVM.ViewModel
                 try
                 {
                     var uow = UnitOfWorkSingleton.Instance;
-                    var newevent = new Model.PrimaryModels.Event(Name, ChangeTime((DateTime)Start, (DateTime)StartTime), ChangeTime((DateTime)End, (DateTime)EndTime), Note, Status.InProcess, user, Contact, Repeat, Notification);
+                    var newevent = new Model.PrimaryModels.Event(Name, 
+                        ChangeTime((DateTime)Start, 
+                        (DateTime)StartTime), 
+                        ChangeTime((DateTime)End, 
+                        (DateTime)EndTime),
+                        Note, 
+                        Status.InProcess, 
+                        user, 
+                        Contact, 
+                        Repeat, 
+                        Notification);
                     newevent.ContactId = Contact?.Id;
                     newevent.Contact = null;
                     uow.Events.Create(newevent);
@@ -203,7 +213,7 @@ namespace Diary.MVVM.ViewModel
                 }
                     catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message + ex);
                 }
         });
             AddContactCommand = new RelayCommand(o =>

@@ -41,6 +41,13 @@ namespace Diary.MVVM.ViewModel
             get { return note; }
             set { note = value; OnPropertyChanged(); }
         }
+        private bool status;
+        public bool CheckStatus
+        {
+            get { return status; }
+            set { status = value; OnPropertyChanged(); }
+        }
+
 
 
         public Action CloseAction { get; set; }
@@ -53,6 +60,10 @@ namespace Diary.MVVM.ViewModel
             Name = task.Name;
             EndTime = task.EndTime;
             Note = task.Notes;
+            if (task.Status == Status.Finished)
+                CheckStatus = true;
+            else CheckStatus = false;
+            
             SaveCommand = new RelayCommand(o =>
             {
                 try
@@ -62,6 +73,10 @@ namespace Diary.MVVM.ViewModel
                     _task.Name = Name;
                     _task.EndTime = EndTime;
                     _task.Notes = Note;
+                    if(CheckStatus)
+                    {
+                        _task.Status = Model.PrimaryModels.Status.Finished;
+                    }
                     uow.SaveChanges();
                     monthControlViewModel.LoadTasksAndEvents();
                 }

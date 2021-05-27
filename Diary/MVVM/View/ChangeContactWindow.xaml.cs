@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,7 +32,23 @@ namespace Diary.MVVM.View
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Regex phRegex = new Regex("^(\\+375|80)(29|25|44|33)(\\d{3})(\\d{2})(\\d{2})$");
+
+            if (Name.Text.Length != 0)
+            {
+                if (Tel.Text.Length != 0 && phRegex.IsMatch(Tel.Text))
+                {
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Номер телефона должен иметь вид +37529*******");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Введите имя");
+            }
         }
     }
 }

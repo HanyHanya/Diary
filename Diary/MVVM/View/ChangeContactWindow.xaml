@@ -19,11 +19,13 @@
             <RowDefinition Height="25*"/>
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
-        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+        <TextBox x:Name="Name" 
+                Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
                 materialDesign:HintAssist.Hint="{DynamicResource Name}" Grid.Column="0" Grid.Row="0"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 VerticalAlignment="Center" Height="40" Margin="10,-5,9.6,9.8" Grid.ColumnSpan="2"/>
-        <TextBox Text="{Binding Tel,UpdateSourceTrigger=PropertyChanged}"
+        <TextBox x:Name="Tel"
+                Text="{Binding Tel,UpdateSourceTrigger=PropertyChanged}"
                 materialDesign:HintAssist.Hint="{DynamicResource Phone}" Grid.Column="0"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 VerticalAlignment="Center" Height="35" Margin="10,0.2,9.6,9.6" Grid.Row="1" Grid.ColumnSpan="2"/>

@@ -4,10 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Diary.MVVM.View"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:converters="clr-namespace:Diary.Converters"
              Foreground="#FFE91E6F" Background="White"
              d:DesignHeight="550" d:DesignWidth="688">
+    <UserControl.Resources>
+        <converters:StatusToBool x:Key="StatusConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -17,9 +22,12 @@
             <RowDefinition Height="365*"/>
             <RowDefinition Height="186*"/>
         </Grid.RowDefinitions>
-        <CalendarItem Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <CalendarItem Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Margin="0,4.2,0,3.4" Width="176" />
-        <CalendarItem Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Margin="0,4.2,0,3.4" Width="176" />
+        <Calendar Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" 
+                  HorizontalAlignment="Center" Margin="10,10,10,140.4" 
+                  Grid.RowSpan="2"  Height="400" Width="324"
+                  SelectedDate="{Binding SelectedDate}"/>
+        <Button Content="Выбрать дату" Grid.Row="1" VerticalAlignment="Top"
+                Command="{Binding ChangeDateCommand}" Margin="10,45.2,10,0"/>
         <TextBlock Text="{DynamicResource List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Margin="122,5,122,0" />
         <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Width="150" Height="35"
                 Content="Изменить" Margin="97,125.2,97,25.4" Command="{Binding ChangeTaskCommand}" CommandParameter="{Binding SelectedEvent}"/>
@@ -36,7 +44,8 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBlock x:Name="ContactName" Grid.Column="0" Text="{Binding Name}" TextWrapping="Wrap"/>
                                 <RadioButton Grid.Column="1" HorizontalAlignment="Left"/>
-                             </Grid>
+                                <!--IsChecked="{Binding Converter={StaticResource StatusConverter}}"/>-->
+                            </Grid>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

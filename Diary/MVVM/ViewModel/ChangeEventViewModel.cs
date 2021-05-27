@@ -143,6 +143,32 @@ namespace Diary.MVVM.ViewModel
             }
         }
 
+
+        private List<RepeatMode> repeatList;
+        public List<RepeatMode> RepeatList
+        {
+            get
+            {
+                return repeatList;
+            }
+            set
+            {
+                repeatList = value; OnPropertyChanged();
+            }
+        }
+        private List<NotificationMode> notificationList;
+        public List<NotificationMode> NotificationList
+        {
+            get
+            {
+                return notificationList;
+            }
+            set
+            {
+                notificationList = value; OnPropertyChanged();
+            }
+        }
+
         public Event _event { get; set; }          
 
         public RelayCommand SaveCommand { get; set; }
@@ -151,6 +177,20 @@ namespace Diary.MVVM.ViewModel
 
         public ChangeEventViewModel(Diary.MVVM.Model.PrimaryModels.Event _SelectedEvent, MonthControlViewModel MonthVM, User user)
         {
+            RepeatList = new List<RepeatMode>();
+            RepeatList.Add(RepeatMode.DoNotRepeat);
+            RepeatList.Add(RepeatMode.RepeatDaily);
+            RepeatList.Add(RepeatMode.RepeatMonthly);
+            RepeatList.Add(RepeatMode.RepeatTwiceAWeek);
+            RepeatList.Add(RepeatMode.RepeatWeekly);
+
+            NotificationList = new List<NotificationMode>();
+            NotificationList.Add(NotificationMode.DoNotNotify);
+            NotificationList.Add(NotificationMode.NotifyDayBefore);
+            NotificationList.Add(NotificationMode.NotifyHourBefore);
+            NotificationList.Add(NotificationMode.NotifyThreeDaysBefore);
+            NotificationList.Add(NotificationMode.NotifyThreeHoursBefore);
+
             var uow = UnitOfWorkSingleton.Instance;
 
             Note = _SelectedEvent.Notes;

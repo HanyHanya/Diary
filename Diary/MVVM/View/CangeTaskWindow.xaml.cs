@@ -31,7 +31,21 @@ namespace Diary.MVVM.View
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            if (Name.Text.Length != 0)
+            {
+                if (End.Text.Length != 0)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Выберите дату окончания");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Введите название");
+            }
         }
     }
 }

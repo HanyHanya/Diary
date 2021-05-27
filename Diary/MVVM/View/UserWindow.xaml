@@ -22,7 +22,7 @@
                 materialDesign:HintAssist.Hint="{DynamicResource Name}" Grid.Column="0" Grid.Row="0"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 VerticalAlignment="Center" Height="34" Margin="10,11,49.8,10.2"/>
-        <TextBox Text="{Binding Login, Mode = TwoWay}"
+        <TextBox Text="{Binding Login, Mode = TwoWay}" IsEnabled="false"
                 materialDesign:HintAssist.Hint="{DynamicResource Login}" Grid.Column="0" Grid.Row="1"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 VerticalAlignment="Center" Height="36" Margin="10,9.6,49.8,9.6"/>

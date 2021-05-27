@@ -27,7 +27,7 @@
         <CalendarItem Grid.Column="0" Grid.Row="1"/>
         <CalendarItem Grid.Row="1" Grid.Column="3"/>
         <CalendarItem Grid.Column="1" Grid.Row="1"/>
-        <CalendarItem Grid.Column="2" Grid.Row="1"/>
+        <Calendar Grid.Column="2" Grid.Row="1" />
         <CalendarItem Grid.Column="0" Grid.Row="2"/>
         <CalendarItem Grid.Row="2" Grid.Column="3"/>
         <CalendarItem Grid.Column="1" Grid.Row="2"/>
