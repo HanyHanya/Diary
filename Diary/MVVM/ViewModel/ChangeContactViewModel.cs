@@ -63,8 +63,8 @@ namespace Diary.MVVM.ViewModel
                 {
                     var uow = UnitOfWorkSingleton.Instance;
                     uow.Contacts.Delete(contact.Id);
-                    ContactListVM.RefreshContactList();
                     uow.SaveChanges();
+                    ContactListVM.RefreshContactList();
                 }
                 catch (Exception ex)
                 {

@@ -74,7 +74,8 @@
                 Margin="10.2,7.2,49.6,14.2" Grid.Column="1" Grid.Row="2"
                 IsEditable="True" Height="29"                  
                 ItemsSource="{Binding NotificationList}"
-                materialDesign:ComboBoxAssist.ClassicMode="{Binding ElementName=ClassicModeCheckBox, Path=IsChecked}">
+                materialDesign:ComboBoxAssist.ClassicMode="{Binding ElementName=ClassicModeCheckBox, Path=IsChecked}"
+                SelectedIndex="{Binding Notification}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Converter={StaticResource RemindConverter}}"/>

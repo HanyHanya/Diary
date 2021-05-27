@@ -45,7 +45,7 @@ namespace Diary.MVVM.ViewModel
             }
             set
             {
-                if (value >= DateTime.Now)
+                if (value >= DateTime.Now.Date)
                 {
                     start = value;
                     OnPropertyChanged();
@@ -201,7 +201,7 @@ namespace Diary.MVVM.ViewModel
             EndTime = _SelectedEvent.EndTime;
             Status = _SelectedEvent.Status;
             Repeat = _SelectedEvent.RepeatMode;
-            notification = _SelectedEvent.NotificationMode;
+            Notification = _SelectedEvent.NotificationMode;
             Contact = uow.Contacts.GetElement(_SelectedEvent.ContactId);
             
             _event = uow.Events.GetElement(_SelectedEvent.Id);
@@ -216,7 +216,7 @@ namespace Diary.MVVM.ViewModel
                     _event.StartTime = ChangeTime((DateTime)Start, (DateTime)StartTime);
                     _event.Status = Status;
                     _event.RepeatMode = Repeat;
-                    _event.NotificationMode = notification;
+                    _event.NotificationMode = Notification;
                     _event.ContactId = Contact?.Id;
                     uow.SaveChanges();
                     MonthVM.LoadTasksAndEvents();
@@ -233,8 +233,8 @@ namespace Diary.MVVM.ViewModel
                 {
                     //var uow = UnitOfWorkSingleton.Instance;
                     uow.Events.Delete(_event.Id);
-                    MonthVM.LoadTasksAndEvents();
                     uow.SaveChanges();
+                    MonthVM.LoadTasksAndEvents();
                 }
                 catch (Exception ex)
                 {

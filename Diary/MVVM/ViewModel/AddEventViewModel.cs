@@ -46,7 +46,7 @@ namespace Diary.MVVM.ViewModel
             }
             set
             {
-                if (value >= DateTime.Now)
+                if (value >= DateTime.Now.Date)
                 {
                     start = value;
                     OnPropertyChanged();

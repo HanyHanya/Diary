@@ -94,7 +94,7 @@ namespace Diary.MVVM.ViewModel
                 {
                     if(entry is Event )
                     {
-                        ev = entry as Event;
+                        ev = entry as Event;                        
                         DateTime d = (DateTime)ev.StartTime;
                         if(d.Day <= SelectedDate.Day)
                         {

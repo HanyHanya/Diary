@@ -1,11 +1,14 @@
 ﻿using Diary.Core;
 using Diary.MVVM.Model.PrimaryModels;
+using Diary.MVVM.Model.UnitOfWork;
 using Diary.MVVM.View;
+using FluentScheduler;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Diary.MVVM.ViewModel
 {
@@ -109,6 +112,18 @@ namespace Diary.MVVM.ViewModel
                 taskWin.ShowDialog();
                 
             });
+
+            Registry registry = new Registry();
+            registry.Schedule(() =>
+            {
+                foreach (Event _event in UnitOfWorkSingleton.Instance.Events.List)
+                {
+                    TimeSpan? diffresult = _event.StartTime - DateTime.Now;
+                    if (diffresult <= TimeSpan.FromMinutes(60))
+                        MessageBox.Show("Час до начала события: " + _event.Name);
+                }
+            }).ToRunNow().AndEvery(20).Minutes();
+            JobManager.Initialize(registry);
         }
          
         public void UserInfoUpdate()

@@ -91,8 +91,8 @@ namespace Diary.MVVM.ViewModel
                 {
                     var uow = UnitOfWorkSingleton.Instance;
                     uow.Tasks.Delete(task.Id);
-                    monthControlViewModel.LoadTasksAndEvents();
                     uow.SaveChanges();
+                    monthControlViewModel.LoadTasksAndEvents();
                 }
                 catch (Exception ex)
                 {
